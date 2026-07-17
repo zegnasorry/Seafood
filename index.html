@@ -1115,22 +1115,32 @@
   }
 
   checkoutBtn.addEventListener('click', async () => {
+    alert('DEBUG: клик получен, товаров в корзине: ' + cartCount());
     if (cartCount() === 0) return;
     ofError.classList.remove('show');
 
-    const fields = {
-      business: $('#ofBusiness').value.trim(),
-      contact: $('#ofContact').value.trim(),
-      phone: $('#ofPhone').value.trim(),
-      address: $('#ofAddress').value.trim(),
-      comment: $('#ofComment').value.trim()
-    };
+    let fields;
+    try {
+      fields = {
+        business: $('#ofBusiness').value.trim(),
+        contact: $('#ofContact').value.trim(),
+        phone: $('#ofPhone').value.trim(),
+        address: $('#ofAddress').value.trim(),
+        comment: $('#ofComment').value.trim()
+      };
+    } catch (e) {
+      alert('DEBUG: ошибка чтения полей формы: ' + e.message);
+      return;
+    }
 
     if (!fields.business || !fields.contact || !fields.phone || !fields.address){
+      alert('DEBUG: не все обязательные поля заполнены');
       ofError.textContent = t('orderForm').errRequired;
       ofError.classList.add('show');
       return;
     }
+
+    alert('DEBUG: поля ок, отправляю запрос в Telegram...');
 
     const originalLabel = checkoutBtn.textContent;
     checkoutBtn.disabled = true;
@@ -1138,6 +1148,7 @@
 
     try {
       await sendOrderToTelegram(buildOrderMessage(fields));
+      alert('DEBUG: сообщение успешно отправлено!');
       showToast(t('toast').orderPlaced);
       Object.keys(cart).forEach(k => delete cart[k]);
       ['ofBusiness','ofContact','ofPhone','ofAddress','ofComment'].forEach(id => $('#'+id).value = '');
@@ -1148,6 +1159,7 @@
       renderGrid();
       closeDrawer();
     } catch (err){
+      alert('DEBUG: ошибка отправки: ' + err.message);
       console.error('Telegram send failed:', err);
       ofError.textContent = t('orderForm').sendError;
       ofError.classList.add('show');
