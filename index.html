@@ -1104,10 +1104,13 @@
 
   async function sendOrderToTelegram(text){
     const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`;
+    const params = new URLSearchParams();
+    params.set('chat_id', TG_CHAT_ID);
+    params.set('text', text);
+    params.set('parse_mode', 'HTML');
     const res = await fetch(url, {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ chat_id: TG_CHAT_ID, text, parse_mode: 'HTML' })
+      body: params
     });
     const data = await res.json();
     if (!data.ok) throw new Error(data.description || 'Telegram error');
@@ -1148,6 +1151,7 @@
       renderGrid();
       closeDrawer();
     } catch (err){
+      console.error('Telegram send failed:', err);
       ofError.textContent = t('orderForm').sendError;
       ofError.classList.add('show');
     } finally {
