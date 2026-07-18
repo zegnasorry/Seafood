@@ -338,19 +338,22 @@
   .card-price{ font-size:13px; font-weight:700; color:var(--text); }
   .card-price span{ color:var(--muted); font-weight:500; font-size:11px; }
   .add-btn{
-    width:28px; height:28px; border-radius:50%; border:1px solid var(--ink);
-    background:transparent; color:var(--ink); display:flex; align-items:center; justify-content:center;
-    flex-shrink:0; transition:background .2s, transform .15s, color .2s;
+    width:34px; height:34px; border-radius:50%; border:none;
+    background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; transition:background .2s, transform .15s;
+    box-shadow:0 3px 10px rgba(13,33,29,0.22);
   }
-  .add-btn:active{ transform:scale(.9); background:var(--ink); color:#fff; }
-  .add-btn svg{ width:13px;height:13px; }
+  .add-btn:active{ transform:scale(.92); background:var(--gold-real, #b38f4a); }
+  .add-btn svg{ width:16px;height:16px; stroke-width:1.4; }
   .qty-stepper{
-    display:flex; align-items:center; gap:8px; background:transparent;
-    border:1px solid var(--ink); border-radius:20px; padding:3px 6px;
+    display:flex; align-items:center; gap:10px; background:var(--ink);
+    border:none; border-radius:20px; padding:5px 8px;
+    box-shadow:0 3px 10px rgba(13,33,29,0.22);
   }
-  .qty-stepper button{ width:20px;height:20px; border:none; background:none; color:var(--ink); display:flex; align-items:center; justify-content:center; }
-  .qty-stepper button svg{ width:11px;height:11px; }
-  .qty-stepper .qn{ font-size:12px; font-weight:800; min-width:14px; text-align:center; color:var(--ink); }
+  .qty-stepper button{ width:22px;height:22px; border:none; background:none; color:#fff; display:flex; align-items:center; justify-content:center; }
+  .qty-stepper button svg{ width:14px;height:14px; stroke-width:1.4; }
+  .qty-stepper button:active svg{ color:var(--gold-real, #b38f4a); }
+  .qty-stepper .qn{ font-size:12.5px; font-weight:700; min-width:14px; text-align:center; color:#fff; }
 
   /* ---------- FEATURES ---------- */
   .feature-panel{
@@ -533,7 +536,7 @@
     <div class="lang-row" id="langRow"></div>
     <nav id="sideNav">
       <a href="#catalog" class="menu-link" data-target="catalog"><span data-i18n="nav.menu"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-      <a href="#about" class="menu-link" data-target="about"><span data-i18n="nav.about"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#contacts" class="menu-link" data-target="contacts"><span data-i18n="nav.about"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a href="#contacts" class="menu-link" data-target="contacts"><span data-i18n="nav.delivery"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <a href="#contacts" class="menu-link" data-target="contacts"><span data-i18n="nav.contacts"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </nav>
@@ -558,43 +561,6 @@
       <source src="images/banner.mp4" type="video/mp4">
     </video>
     <div class="banner-overlay"></div>
-    <div class="banner-caption">
-      <p class="eyebrow" data-i18n="hero.0.eyebrow"></p>
-      <h2 class="bc-title" data-i18n="hero.0.titleMain"></h2>
-      <div class="banner-rule"></div>
-    </div>
-  </div>
-
-  <!-- HERO -->
-  <div class="hero" id="heroSlider">
-    <div class="hero-slide active" data-idx="0">
-      <p class="eyebrow" data-i18n="hero.0.eyebrow"></p>
-      <h1><span data-i18n="hero.0.titleMain"></span><span class="accent" data-i18n="hero.0.titleAccent"></span></h1>
-      <p data-i18n="hero.0.p"></p>
-      <div class="hero-art"><div class="plate"></div><div class="ice"></div>
-        <div class="fillet" style="background:linear-gradient(135deg, var(--tuna1), var(--tuna2));"></div>
-      </div>
-      <a href="#catalog" class="cta-outline"><span data-i18n="hero.cta"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-    <div class="hero-slide" data-idx="1">
-      <p class="eyebrow" data-i18n="hero.1.eyebrow"></p>
-      <h1><span data-i18n="hero.1.titleMain"></span><span class="accent" data-i18n="hero.1.titleAccent"></span></h1>
-      <p data-i18n="hero.1.p"></p>
-      <div class="hero-art"><div class="plate"></div><div class="ice"></div>
-        <div class="fillet" style="background:linear-gradient(135deg, var(--salmon1), var(--salmon2));"></div>
-      </div>
-      <a href="#catalog" class="cta-outline"><span data-i18n="hero.cta"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-    <div class="hero-slide" data-idx="2">
-      <p class="eyebrow" data-i18n="hero.2.eyebrow"></p>
-      <h1><span data-i18n="hero.2.titleMain"></span><span class="accent" data-i18n="hero.2.titleAccent"></span></h1>
-      <p data-i18n="hero.2.p"></p>
-      <div class="hero-art"><div class="plate"></div><div class="ice"></div>
-        <div class="fillet" style="background:linear-gradient(135deg, var(--crab1), var(--crab2));"></div>
-      </div>
-      <a href="#catalog" class="cta-outline"><span data-i18n="hero.cta"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-    </div>
-    <div class="dots" id="heroDots"></div>
   </div>
 
   <!-- CATEGORIES -->
@@ -610,34 +576,6 @@
       <button class="see-all" id="seeAllBtn"></button>
     </div>
     <div class="grid" id="productGrid"></div>
-  </div>
-
-  <!-- FEATURES -->
-  <div class="feature-panel" id="about">
-    <div class="feature">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M3 15s2-1 5-1 4 1.5 6 1.5 5-1 5-1M4 12l1-6h2l1 6M15 12l1-6h2l1 6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M2 15c1 3 4 5 10 5s9-2 10-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-      <div class="feature-text">
-        <div class="ft-title" data-i18n="features.0.title"></div>
-        <div class="ft-desc" data-i18n="features.0.desc"></div>
-      </div>
-      <svg class="feature-chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <div class="feature">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M5 6l14 12M19 6L5 18M2 12h20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></div>
-      <div class="feature-text">
-        <div class="ft-title" data-i18n="features.1.title"></div>
-        <div class="ft-desc" data-i18n="features.1.desc"></div>
-      </div>
-      <svg class="feature-chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
-    <div class="feature">
-      <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2l3.5 4.5H20L16 12l4 5.5h-4.5L12 22l-3.5-4.5H4L8 12 4 6.5h4.5L12 2Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></div>
-      <div class="feature-text">
-        <div class="ft-title" data-i18n="features.2.title"></div>
-        <div class="ft-desc" data-i18n="features.2.desc"></div>
-      </div>
-      <svg class="feature-chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </div>
   </div>
 
   <!-- FOOTER -->
@@ -1043,14 +981,14 @@
 
   function renderStepper(slot, p, qty){
     if (qty <= 0){
-      slot.innerHTML = `<button class="add-btn" data-add="${p.id}"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>`;
+      slot.innerHTML = `<button class="add-btn" data-add="${p.id}"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>`;
       slot.querySelector('[data-add]').addEventListener('click', () => changeQty(p, 1, slot));
     } else {
       slot.innerHTML = `
         <div class="qty-stepper">
-          <button data-dec><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          <button data-dec><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
           <span class="qn">${qty}</span>
-          <button data-inc><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+          <button data-inc><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
         </div>`;
       slot.querySelector('[data-inc]').addEventListener('click', () => changeQty(p, 1, slot));
       slot.querySelector('[data-dec]').addEventListener('click', () => changeQty(p, -1, slot));
@@ -1067,36 +1005,7 @@
     pulseBadge();
   }
 
-  // ---------------- HERO SLIDER ----------------
-  const slides = $$('.hero-slide');
-  const dotsWrap = $('#heroDots');
-  let heroIdx = 0;
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => setHero(i));
-    dotsWrap.appendChild(d);
-  });
-  function setHero(i){
-    heroIdx = i;
-    slides.forEach((s, idx) => s.classList.toggle('active', idx === i));
-    $$('.dot', dotsWrap).forEach((d, idx) => d.classList.toggle('active', idx === i));
-  }
-  let heroTimer = setInterval(() => setHero((heroIdx + 1) % slides.length), 5500);
-  $('#heroSlider').addEventListener('touchstart', () => clearInterval(heroTimer), {passive:true});
-
-  let touchX = null;
-  const heroEl = $('#heroSlider');
-  heroEl.addEventListener('touchstart', e => touchX = e.touches[0].clientX, {passive:true});
-  heroEl.addEventListener('touchend', e => {
-    if (touchX === null) return;
-    const dx = e.changedTouches[0].clientX - touchX;
-    if (Math.abs(dx) > 40){
-      if (dx < 0) setHero((heroIdx + 1) % slides.length);
-      else setHero((heroIdx - 1 + slides.length) % slides.length);
-    }
-    touchX = null;
-  }, {passive:true});
+  // ---------------- (слайдер hero удалён вместе с разметкой) ----------------
 
   // ---------------- SIDE MENU ----------------
   const overlay = $('#overlay');
