@@ -420,10 +420,6 @@
 </head>
 <body>
 <div class="device" id="device">
-  <div style="background:#ff3b30;color:#fff;text-align:center;padding:10px;font-weight:800;font-size:14px;position:sticky;top:0;z-index:999;">
-    ⚠️ TEST VERSION 6 LOADED ⚠️
-  </div>
-  <div id="debugLog" style="position:fixed; left:8px; right:8px; bottom:8px; max-height:40vh; overflow-y:auto; background:#000; color:#0f0; font-family:monospace; font-size:11px; padding:10px; border-radius:8px; z-index:99999; border:2px solid #0f0; white-space:pre-wrap; display:none;"></div>
 
   <!-- TOP NAV -->
   <div class="topnav">
@@ -612,13 +608,6 @@
 </div>
 
 <script>
-window.addEventListener('error', function(e){
-  var p = document.getElementById('debugLog');
-  if (p){
-    p.style.display = 'block';
-    p.textContent += 'JS ERROR: ' + e.message + ' (line ' + e.lineno + ')\n';
-  }
-});
 (function(){
   // ---------------- I18N ----------------
   const I18N = {
@@ -1088,12 +1077,7 @@ window.addEventListener('error', function(e){
 
   const ofError = $('#ofError');
 
-  function dlog(msg){
-    const panel = $('#debugLog');
-    panel.style.display = 'block';
-    panel.textContent += (new Date()).toLocaleTimeString() + '  ' + msg + '\n';
-    panel.scrollTop = panel.scrollHeight;
-  }
+  function dlog(){}
   const checkoutBtn = $('#checkoutBtn');
 
   function escapeHtml(str){
