@@ -420,8 +420,9 @@
 <body>
 <div class="device" id="device">
   <div style="background:#ff3b30;color:#fff;text-align:center;padding:10px;font-weight:800;font-size:14px;position:sticky;top:0;z-index:999;">
-    ⚠️ TEST VERSION 4 LOADED ⚠️
+    ⚠️ TEST VERSION 5 LOADED ⚠️
   </div>
+  <div id="debugLog" style="position:fixed; left:8px; right:8px; bottom:8px; max-height:40vh; overflow-y:auto; background:#000; color:#0f0; font-family:monospace; font-size:11px; padding:10px; border-radius:8px; z-index:99999; border:2px solid #0f0; white-space:pre-wrap; display:none;"></div>
 
   <!-- TOP NAV -->
   <div class="topnav">
@@ -610,6 +611,13 @@
 </div>
 
 <script>
+window.addEventListener('error', function(e){
+  var p = document.getElementById('debugLog');
+  if (p){
+    p.style.display = 'block';
+    p.textContent += 'JS ERROR: ' + e.message + ' (line ' + e.lineno + ')\n';
+  }
+});
 (function(){
   // ---------------- I18N ----------------
   const I18N = {
@@ -1078,6 +1086,13 @@
   });
 
   const ofError = $('#ofError');
+
+  function dlog(msg){
+    const panel = $('#debugLog');
+    panel.style.display = 'block';
+    panel.textContent += (new Date()).toLocaleTimeString() + '  ' + msg + '\n';
+    panel.scrollTop = panel.scrollHeight;
+  }
   const checkoutBtn = $('#checkoutBtn');
 
   function escapeHtml(str){
@@ -1111,14 +1126,17 @@
     params.set('text', text);
     params.set('parse_mode', 'HTML');
     const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?${params.toString()}`;
+    dlog('fetch начат...');
     const res = await fetch(url);
+    dlog('fetch завершён, статус: ' + res.status);
     const data = await res.json();
+    dlog('ответ Telegram: ' + JSON.stringify(data).slice(0, 150));
     if (!data.ok) throw new Error(data.description || 'Telegram error');
     return data;
   }
 
   checkoutBtn.addEventListener('click', async () => {
-    alert('DEBUG: клик получен, товаров в корзине: ' + cartCount());
+    dlog('клик получен, товаров в корзине: ' + cartCount());
     if (cartCount() === 0) return;
     ofError.classList.remove('show');
 
@@ -1132,18 +1150,18 @@
         comment: $('#ofComment').value.trim()
       };
     } catch (e) {
-      alert('DEBUG: ошибка чтения полей формы: ' + e.message);
+      dlog('ошибка чтения полей формы: ' + e.message);
       return;
     }
 
     if (!fields.business || !fields.contact || !fields.phone || !fields.address){
-      alert('DEBUG: не все обязательные поля заполнены');
+      dlog('не все обязательные поля заполнены');
       ofError.textContent = t('orderForm').errRequired;
       ofError.classList.add('show');
       return;
     }
 
-    alert('DEBUG: поля ок, отправляю запрос в Telegram...');
+    dlog('поля ок, отправляю запрос в Telegram...');
 
     const originalLabel = checkoutBtn.textContent;
     checkoutBtn.disabled = true;
@@ -1151,7 +1169,7 @@
 
     try {
       await sendOrderToTelegram(buildOrderMessage(fields));
-      alert('DEBUG: сообщение успешно отправлено!');
+      dlog('сообщение успешно отправлено!');
       showToast(t('toast').orderPlaced);
       Object.keys(cart).forEach(k => delete cart[k]);
       ['ofBusiness','ofContact','ofPhone','ofAddress','ofComment'].forEach(id => $('#'+id).value = '');
@@ -1162,7 +1180,7 @@
       renderGrid();
       closeDrawer();
     } catch (err){
-      alert('DEBUG: ошибка отправки: ' + err.message);
+      dlog('ошибка отправки: ' + err.message);
       console.error('Telegram send failed:', err);
       ofError.textContent = t('orderForm').sendError;
       ofError.classList.add('show');
