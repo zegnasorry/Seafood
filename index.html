@@ -8,14 +8,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#050f0d;
+    --bg:#040d0b;
     --bg-soft:#0a1c18;
     --panel:#0d211c;
     --panel-2:#0f2620;
     --line: rgba(150,205,188,0.14);
     --line-strong: rgba(150,205,188,0.28);
-    --mint:#8beeda;
-    --mint-dim:#4f9c8c;
+    --mint:#6fe0cc;
+    --mint-dim:#3d8f8a;
     --gold:#d7b57a;
     --cream:#f2ead9;
     --text:#e9f4f0;
@@ -145,6 +145,11 @@
   }
 
   /* ---------- HERO ---------- */
+  .brand-banner{
+    margin:10px 20px 4px; border-radius:var(--radius-lg); overflow:hidden;
+    box-shadow: var(--shadow); border:1px solid var(--line);
+  }
+  .brand-banner img{ width:100%; height:auto; display:block; }
   .hero{ position:relative; padding:6px 20px 22px; }
   .hero-slide{ display:none; animation:fade .5s ease; }
   .hero-slide.active{ display:block; }
@@ -191,6 +196,15 @@
     background-image: repeating-linear-gradient(115deg, rgba(255,255,255,.08) 0 2px, transparent 2px 9px);
     opacity:.5;
   }
+  /* real product photos: clean framed look instead of the organic placeholder shape */
+  img.fillet-photo{
+    width:100%; height:100%; object-fit:cover; border-radius:var(--radius-sm);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08), 0 10px 24px rgba(0,0,0,.4);
+    display:block;
+  }
+  .cat-circle img.fillet-photo{ width:100%; height:100%; border-radius:50%; box-shadow:none; }
+  .card-media img.fillet-photo{ width:100%; height:100%; border-radius:0; }
+  .d-item img.fillet-photo{ width:52px; height:52px; flex-shrink:0; border-radius:var(--radius-sm); }
   .cta-outline{
     display:inline-flex; align-items:center; gap:10px;
     border:1px solid var(--line-strong); border-radius:30px;
@@ -463,6 +477,11 @@
     </div>
   </div>
 
+  <!-- BRAND BANNER -->
+  <div class="brand-banner">
+    <img src="images/banner.jpg" alt="Seafoods — Okeanın ən yaxşısı" loading="lazy">
+  </div>
+
   <!-- HERO -->
   <div class="hero" id="heroSlider">
     <div class="hero-slide active" data-idx="0">
@@ -641,7 +660,10 @@
         p3:{name:'Kral qızılbalıq', tag:'Qızılbalıq'}, p4:{name:'Qızılbalıq steyki', tag:'Qızılbalıq'},
         p5:{name:'Hamachi', tag:'Sarıquyruq'}, p6:{name:'Vəhşi levrek', tag:'Ağ balıq'},
         p7:{name:'Dəniz daraqcığı', tag:'Dəniz məhsulları'}, p8:{name:'Kamçatka krabı', tag:'Delikateslər'},
-        p9:{name:'Qızılbalıq kürüsü', tag:'Delikateslər'}
+        p9:{name:'Qızılbalıq kürüsü', tag:'Delikateslər'},
+        p10:{name:'Ahtapot', tag:'Dəniz məhsulları'}, p11:{name:'Kral qarides', tag:'Dəniz məhsulları'},
+        p12:{name:'İstridyə', tag:'Delikateslər'}, p13:{name:'Midiya', tag:'Dəniz məhsulları'},
+        p14:{name:'Kalmar', tag:'Dəniz məhsulları'}, p15:{name:'Omar', tag:'Delikateslər'}
       }
     },
     ru: {
@@ -674,7 +696,10 @@
         p3:{name:'Королевский', tag:'Лосось'}, p4:{name:'Стейк лосося', tag:'Лосось'},
         p5:{name:'Хамачи', tag:'Жёлтый хвост'}, p6:{name:'Сибас дикий', tag:'Белая рыба'},
         p7:{name:'Гребешок дивный', tag:'Морепродукты'}, p8:{name:'Краб камчатский', tag:'Деликатесы'},
-        p9:{name:'Икра лосося', tag:'Деликатесы'}
+        p9:{name:'Икра лосося', tag:'Деликатесы'},
+        p10:{name:'Осьминог', tag:'Морепродукты'}, p11:{name:'Королевские креветки', tag:'Морепродукты'},
+        p12:{name:'Устрицы', tag:'Деликатесы'}, p13:{name:'Мидии', tag:'Морепродукты'},
+        p14:{name:'Кальмар', tag:'Морепродукты'}, p15:{name:'Лобстер', tag:'Деликатесы'}
       }
     },
     en: {
@@ -707,7 +732,10 @@
         p3:{name:'Royal salmon', tag:'Salmon'}, p4:{name:'Salmon steak', tag:'Salmon'},
         p5:{name:'Hamachi', tag:'Yellowtail'}, p6:{name:'Wild seabass', tag:'White fish'},
         p7:{name:'Fine scallop', tag:'Seafood'}, p8:{name:'Kamchatka crab', tag:'Delicacies'},
-        p9:{name:'Salmon roe', tag:'Delicacies'}
+        p9:{name:'Salmon roe', tag:'Delicacies'},
+        p10:{name:'Octopus', tag:'Seafood'}, p11:{name:'King prawns', tag:'Seafood'},
+        p12:{name:'Oysters', tag:'Delicacies'}, p13:{name:'Mussels', tag:'Seafood'},
+        p14:{name:'Squid', tag:'Seafood'}, p15:{name:'Lobster', tag:'Delicacies'}
       }
     },
     it: {
@@ -740,7 +768,10 @@
         p3:{name:'Salmone reale', tag:'Salmone'}, p4:{name:'Trancio di salmone', tag:'Salmone'},
         p5:{name:'Hamachi', tag:'Ricciola'}, p6:{name:'Branzino selvatico', tag:'Pesce bianco'},
         p7:{name:'Capasanta pregiata', tag:'Frutti di mare'}, p8:{name:'Granchio della Kamchatka', tag:'Prelibatezze'},
-        p9:{name:'Uova di salmone', tag:'Prelibatezze'}
+        p9:{name:'Uova di salmone', tag:'Prelibatezze'},
+        p10:{name:'Polpo', tag:'Frutti di mare'}, p11:{name:'Gamberoni', tag:'Frutti di mare'},
+        p12:{name:'Ostriche', tag:'Prelibatezze'}, p13:{name:'Cozze', tag:'Frutti di mare'},
+        p14:{name:'Calamaro', tag:'Frutti di mare'}, p15:{name:'Astice', tag:'Prelibatezze'}
       }
     }
   };
@@ -757,12 +788,18 @@
     {id:'p1', cat:'tuna', price:145, unit:'kg', grad:['var(--tuna1)','var(--tuna2)']},
     {id:'p2', cat:'tuna', price:78, unit:'kg', grad:['var(--tuna1)','var(--tuna2)']},
     {id:'p3', cat:'salmon', price:62, unit:'kg', grad:['var(--salmon1)','var(--salmon2)']},
-    {id:'p4', cat:'salmon', price:48, unit:'kg', grad:['var(--salmon1)','var(--salmon2)']},
+    {id:'p4', cat:'salmon', price:48, unit:'kg', grad:['var(--salmon1)','var(--salmon2)'], img:'images/salmon.jpg'},
     {id:'p5', cat:'white', price:85, unit:'kg', grad:['var(--white1)','var(--white2)']},
     {id:'p6', cat:'white', price:42, unit:'kg', grad:['var(--white1)','var(--white2)']},
-    {id:'p7', cat:'seafood', price:52, unit:'kg', grad:['var(--scallop1)','var(--scallop2)']},
-    {id:'p8', cat:'delicacy', price:110, unit:'kg', grad:['var(--crab1)','var(--crab2)']},
-    {id:'p9', cat:'delicacy', price:58, unit:'100g', grad:['var(--caviar1)','var(--caviar2)']},
+    {id:'p7', cat:'seafood', price:52, unit:'kg', grad:['var(--scallop1)','var(--scallop2)'], img:'images/scallops.jpg'},
+    {id:'p8', cat:'delicacy', price:110, unit:'kg', grad:['var(--crab1)','var(--crab2)'], img:'images/crab.jpg'},
+    {id:'p9', cat:'delicacy', price:58, unit:'100g', grad:['var(--caviar1)','var(--caviar2)'], img:'images/caviar.jpg'},
+    {id:'p10', cat:'seafood', price:76, unit:'kg', grad:['var(--scallop1)','var(--scallop2)'], img:'images/octopus.jpg'},
+    {id:'p11', cat:'seafood', price:68, unit:'kg', grad:['var(--salmon1)','var(--salmon2)'], img:'images/shrimp.jpg'},
+    {id:'p12', cat:'delicacy', price:120, unit:'kg', grad:['var(--white1)','var(--white2)'], img:'images/oysters.jpg'},
+    {id:'p13', cat:'seafood', price:34, unit:'kg', grad:['var(--white2)','var(--white1)'], img:'images/mussels.jpg'},
+    {id:'p14', cat:'seafood', price:48, unit:'kg', grad:['var(--white1)','var(--white2)'], img:'images/squid.jpg'},
+    {id:'p15', cat:'delicacy', price:165, unit:'kg', grad:['var(--crab1)','var(--crab2)'], img:'images/lobster.jpg'},
   ];
 
   let activeCat = 'all';
@@ -838,6 +875,13 @@
   }
 
   // ---------------- CATEGORIES ----------------
+  function mediaHtml(p, cls){
+    cls = cls || 'fillet';
+    if (p.img){
+      return `<img class="${cls} ${cls}-photo" src="${p.img}" alt="" loading="lazy">`;
+    }
+    return `<div class="${cls}" style="background:linear-gradient(135deg, ${p.grad[0]}, ${p.grad[1]})"></div>`;
+  }
   const catRow = $('#catRow');
   function renderCategories(){
     catRow.innerHTML = '';
@@ -846,7 +890,7 @@
       btn.className = 'cat-item' + (id === activeCat ? ' active' : '');
       btn.dataset.cat = id;
       const sample = PRODUCTS.find(p => p.cat === id) || {grad:['var(--mint)','var(--mint-dim)']};
-      btn.innerHTML = `<div class="cat-circle"><div class="fillet" style="background:linear-gradient(135deg, ${sample.grad[0]}, ${sample.grad[1]})"></div></div><span>${t('categories.' + id)}</span>`;
+      btn.innerHTML = `<div class="cat-circle">${mediaHtml(sample)}</div><span>${t('categories.' + id)}</span>`;
       btn.addEventListener('click', () => {
         activeCat = id;
         showAll = false;
@@ -886,9 +930,8 @@
         <button class="fav-btn ${favs.has(p.id) ? 'active' : ''}" data-fav="${p.id}">
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-9.3-8.8C1.2 8 2.6 4.8 5.7 4.1 8 3.6 10 4.7 12 7c2-2.3 4-3.4 6.3-2.9 3.1.7 4.5 3.9 3 7.1C19 15.6 12 20 12 20Z" stroke="currentColor" stroke-width="1.5"/></svg>
         </button>
-        <div class="fillet" style="background:linear-gradient(135deg, ${p.grad[0]}, ${p.grad[1]})"></div>
+        ${mediaHtml(p)}
       </div>
-      <div class="card-body">
         <div class="card-tag">${info.tag}</div>
         <div class="card-name">${info.name}</div>
         <div class="card-bottom">
@@ -1034,7 +1077,7 @@
       const row = document.createElement('div');
       row.className = 'd-item';
       row.innerHTML = `
-        <div class="fillet" style="background:linear-gradient(135deg, ${p.grad[0]}, ${p.grad[1]})"></div>
+        ${mediaHtml(p)}
         <div class="d-item-info">
           <div class="n">${info.name}</div>
           <div class="p">${qty} × ${fmtPrice(p.price)} / ${p.unit}</div>
