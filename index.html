@@ -344,16 +344,26 @@
     background:transparent; color:var(--muted); font-size:9.5px; font-weight:700;
     letter-spacing:.03em; text-transform:uppercase; flex-shrink:0; white-space:nowrap;
   }
-  .card-body{ padding:14px 14px 15px; display:flex; flex-direction:column; gap:4px; flex:1; }
-  .card-tag{ font-size:9px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .card-name{
-    font-family:'Bodoni Moda',serif; font-size:16.5px; color:var(--ink); font-weight:500; line-height:1.22;
-    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
-    min-height:calc(1.22em * 2);
+  .card-body{ padding:16px 14px 16px; display:flex; flex-direction:column; align-items:center; gap:5px; flex:1; text-align:center; }
+  .card-tag{
+    font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--mint-dim); font-weight:700;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:100%;
   }
-  .card-bottom{ margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:8px; padding-top:12px; border-top:1px solid var(--line); margin-top:10px; flex-wrap:wrap; }
-  .card-price{ font-size:12.5px; font-weight:700; color:var(--text); white-space:nowrap; }
-  .card-price span{ color:var(--muted); font-weight:500; font-size:10.5px; white-space:nowrap; }
+  .card-name{
+    font-family:'Bodoni Moda',serif; font-size:16.5px; color:var(--ink); font-weight:500; line-height:1.28;
+    display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+    min-height:calc(1.28em * 2); letter-spacing:.01em;
+  }
+  .card-name::after{
+    content:''; display:block; width:22px; height:1px; margin:8px auto 0;
+    background:var(--gold-real, #d4a03a); opacity:.6;
+  }
+  .card-bottom{
+    margin-top:auto; padding-top:12px; margin-top:10px; border-top:1px solid var(--line);
+    width:100%; display:flex; flex-direction:column; align-items:center; gap:10px;
+  }
+  .card-price{ font-family:'Bodoni Moda',serif; font-size:14.5px; font-weight:600; color:var(--text); white-space:nowrap; letter-spacing:.02em; }
+  .card-price span{ font-family:'Manrope',sans-serif; color:var(--muted); font-weight:500; font-size:10.5px; white-space:nowrap; }
   .add-btn{
     width:34px; height:34px; border-radius:50%; border:none;
     background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center;
@@ -789,7 +799,7 @@
       ],
       cta:'Menyuya bax',
       sections:{categories:'Kateqoriyalar', popular:'Populyar', seeAll:'Hamısına bax', hide:'Gizlət'},
-      categories:{all:'Hamısı', fresh:'Təzə balıq', frozen:'Donmuş balıq', smoked:'Hisə balıq', seafood:'Dəniz məhsulları', snacks:'Snəklər', other:'Hisə məhsulları, pendir və konservlər'},
+      categories:{all:'Hamısı', fresh:'Təzə balıq', frozen:'Donmuş balıq', smoked:'Hislənmiş balıq', seafood:'Dəniz məhsulları', snacks:'Snəklər', other:'Hislənmiş məhsullar, pendir və konservlər'},
       features:[
         {title:'Vəhşi balıq', desc:'Yalnız təbii mühitdən tutulan vəhşi balıq, fermasız və antibiotiksiz.'},
         {title:'Qüsursuz təzəlik', desc:'Sürətli logistika və soyuq zəncir sayəsində tutulduğu gün çatdırırıq.'},
@@ -805,14 +815,14 @@
         errRequired:'Zəhmət olmasa bütün vacib xanaları doldurun', sending:'Göndərilir...', sendError:'Göndərmək mümkün olmadı, yenidən cəhd edin'
       },
       toast:{added:(n)=>`${n} səbətə əlavə olundu`, orderPlaced:'Sifariş qəbul edildi! Sizinlə əlaqə saxlayacağıq'},
-      units:{kg:'kq', whole:'bütöv', pcs:'ədəd', pack500:'qab 500q', pack190:'bank 190q'}, outOfStock:'Bitib',
+      units:{kg:'kq', whole:'bütöv', pcs:'ədəd', pack500:'qab 500q', pack190:'banka 190q'}, outOfStock:'Bitib',
       pm:{qty:'Miqdar', add:'Səbətə əlavə et', inCart:'Səbətdə', total:'Cəmi'},
       products:{
         fr1:{name:'Beluqa (bütöv)'},
         fr2:{name:'Beluqa (kq)'},
-        fr3:{name:'Asetrina (bütöv)'},
-        fr4:{name:'Asetrina (kq)'},
-        fr5:{name:'Semqa'},
+        fr3:{name:'Nərə balığı (bütöv)'},
+        fr4:{name:'Nərə balığı (kq)'},
+        fr5:{name:'Qızılbalıq'},
         fr6:{name:'Forel 350–500 q'},
         fr7:{name:'Forel 2 kq-dan'},
         fr8:{name:'Forel 3 kq-dan'},
@@ -823,24 +833,24 @@
         fr13:{name:'Sibas 800–1000 q'},
         fr14:{name:'Sibas 1000–1500 q'},
         fr15:{name:'Kutum'},
-        fz1:{name:'Semqa (donmuş)'},
-        fz2:{name:'Asetrina, başsız (donmuş)'},
+        fz1:{name:'Qızılbalıq (donmuş)'},
+        fz2:{name:'Nərə balığı, başsız (donmuş)'},
         fz3:{name:'Sudak 1 kq'},
         fz4:{name:'Sudak 1.5 kq'},
         fz5:{name:'Tilapiya file'},
-        sm1:{name:'Çupra isti hisə'},
-        sm2:{name:'Forel isti hisə'},
-        sm3:{name:'Beluqa isti hisə'},
-        sm4:{name:'Beluqa soyuq hisə'},
-        sm5:{name:'Semqa soyuq hisə'},
-        sm6:{name:'Asetrina file, soyuq hisə'},
-        sm7:{name:'Asetrina file, isti hisə'},
-        sm8:{name:'Bütöv asetrina, isti hisə'},
-        sm9:{name:'Semqa Yukola, soyuq hisə'},
-        sm10:{name:'Yağlı balıq (ESK), soyuq hisə'},
-        sm11:{name:'Danimarka foreli, hisə'},
-        sf1:{name:'Kral krevetka 40/50, bişmiş'},
-        sf2:{name:'Kral krevetka, isti hisə'},
+        sm1:{name:'İsti hislənmiş çupra'},
+        sm2:{name:'İsti hislənmiş forel'},
+        sm3:{name:'İsti hislənmiş beluqa'},
+        sm4:{name:'Soyuq hislənmiş beluqa'},
+        sm5:{name:'Soyuq hislənmiş qızılbalıq'},
+        sm6:{name:'Soyuq hislənmiş nərə balığı file'},
+        sm7:{name:'İsti hislənmiş nərə balığı file'},
+        sm8:{name:'İsti hislənmiş bütöv nərə balığı'},
+        sm9:{name:'Soyuq hislənmiş qızılbalıq (yukola)'},
+        sm10:{name:'Soyuq hislənmiş yağlı balıq'},
+        sm11:{name:'Hislənmiş Danimarka foreli'},
+        sf1:{name:'Kral krevetkası 40/50, bişmiş'},
+        sf2:{name:'İsti hislənmiş kral krevetkası'},
         sf3:{name:'Çay krevetkası, iri seçmə'},
         sf4:{name:'Çay krevetkası, qarışıq'},
         sf5:{name:'Xırda krevetka'},
@@ -849,38 +859,38 @@
         sf8:{name:'Maqadan krevetkası'},
         sf9:{name:'Vakuum krevetka, təmizlənmiş 90/120'},
         sf10:{name:'Vakuum krevetka 16/20'},
-        sf11:{name:'Qara Pələng krevetka'},
+        sf11:{name:'Qara Pələng krevetkası'},
         sf12:{name:'Qara midiya'},
         sf13:{name:'Yaşıl midiya'},
-        sf14:{name:'Təzə rak'},
+        sf14:{name:'Təzə xərçəng'},
         sf15:{name:'Kamçatka krabı, hazır, bütöv'},
-        sf16:{name:'Lobster 400 q'},
+        sf16:{name:'Omar 400 q'},
         sf17:{name:'Krab çubuqları (donmuş)'},
         ot1:{name:'Hörük pendiri, bişmiş'},
         ot2:{name:'Hörük pendiri, adi'},
-        ot3:{name:'Hisə toyuq boynu'},
-        ot4:{name:'Hisə toyuq budu'},
-        ot5:{name:'Hisə bildirçin (1 ədəd)'},
+        ot3:{name:'Hislənmiş toyuq boynu'},
+        ot4:{name:'Hislənmiş toyuq budu'},
+        ot5:{name:'Hislənmiş bildirçin (1 ədəd)'},
         ot6:{name:'Toyuq içalatı'},
-        ot7:{name:'Vakuum silyodka 500 q'},
+        ot7:{name:'Vakuum siyənək 500 q'},
         ot8:{name:'"Russkoye More", dilimlənmiş 500 q'},
         ot9:{name:'Şprot "5 dəniz"'},
         ot10:{name:'Yağda şprot 190 q'},
         ot11:{name:'Vakuum skumbriya'},
-        sn1:{name:'Stack Jack Qurudulmuş kalmar "Pyataçkalar"', desc:'Pyataçka/sikkə formasında qurudulmuş kalmar parçaları, pivəyə duzlu-qurudulmuş snek.'},
-        sn2:{name:'Главснэк Qurudulmuş kalmar hot-teys istili bibərlə', desc:'Qırmızı qurudulmuş kalmar (zolaq/filet), acı bibərli, duzlu-qurudulmuş dəniz məhsulu (~1 kq).'},
-        sn3:{name:'Snek Maniya Lipar balığı parçaları premium duzlu-qurudulmuş', desc:'Premium lipar balığı parça/lavaş formasında, xırtıldayan duzlu-qurudulmuş pivə snek-i.'},
-        sn4:{name:'Chipka Krab dadlı kalmar yonqarı qurudulmuş-vəlenmiş', desc:'Krab ətirli kalmar yonqarı, məşhur qurudulmuş-vəlenmiş snek (1 kq).'},
-        sn5:{name:'Qurudulmuş-vəlenmiş "Sёmqa" qızılbalıq pauçinkası', desc:'Qırmızı balıqdan (qızılbalıq/sёmqa) incə pauçinka/saman formasında, zərif premium qurudulmuş-vəlenmiş snek.'},
-        sn6:{name:'Qurudulmuş kalmar "Dəniz pauçinkası MİKS"', desc:'Rəngarəng kalmar pauçinkası (yaşıl, qırmızı, qara, narıncı və s.), qurudulmuş mikst (1 kq).'},
-        sn7:{name:'Snek Maniya Mintay (kürəkləri) bibərli premium duzlu-qurudulmuş', desc:'Bibərli mintay kürəkləri, acı duzlu-qurudulmuş balıq snek-i.'},
-        sn8:{name:'Chipka Taranka saman bibərli Premium', desc:'Bibərli taranka (voblya/taran) saman formasında, premium qurudulmuş-vəlenmiş (~1 kq).'},
-        sn9:{name:'Chipka Kalmar yonqarı qurudulmuş-vəlenmiş', desc:'Təbii açıq rəngli kalmar yonqarı, klassik qurudulmuş-vəlenmiş snek.'},
-        sn10:{name:'Super Snack Qorbuşa balığından vəlenmiş çubuqlar "Çar duzlaması"', desc:'Qorbuşa balığından vəlenmiş çubuq/zolaqlar, firma snek-i.'},
-        sn11:{name:'Mintay samanı (qurudulmuş qida balıq məhsulu)', desc:'Mintay saman/zolaqları, duzlu-qurudulmuş büdcəli qəlyanaltı.'},
-        sn12:{name:'Chipka Vəlenmiş kalmar yarımhəlqə / lapşa', desc:'Yarımhəlqə və ya geniş lapşa formasında vəlenmiş kalmar, zərif dəniz məhsulu snek-i.'},
-        sn13:{name:'Snek Maniya Lipar balığı parçaları premium bibərli duzlu-qurudulmuş', desc:'Bibərli kubik formasında lipar balığı, acı premium variant.'},
-        sn14:{name:'Bibərli taranka (premium qurudulmuş saman)', desc:'Bibərli taranka/balıq samanı, pivəyə klassik acı qəlyanaltı (~1 kq).'},
+        sn1:{name:'Stack Jack quru-duzlanmış kalmar "medalyonlar"', desc:'Medalyon formasında duzlu-qurudulmuş kalmar parçaları, pivəyə uyğun qəlyanaltı.'},
+        sn2:{name:'Главснэк duzlu-qurudulmuş kalmar, acı bibərli', desc:'Qırmızı duzlu-qurudulmuş kalmar zolaqları, acı bibərli dəniz məhsulu qəlyanaltısı (~1 kq).'},
+        sn3:{name:'Snek Maniya lipar balığı parçaları, premium duzlu-qurudulmuş', desc:'Premium lipar balığı parçaları, xırtıldayan duzlu-qurudulmuş pivə qəlyanaltısı.'},
+        sn4:{name:'Chipka krab dadlı, duzlu-qurudulmuş kalmar yonqarı', desc:'Krab ətirli kalmar yonqarı, məşhur duzlu-qurudulmuş qəlyanaltı (1 kq).'},
+        sn5:{name:'Duzlu-qurudulmuş qızılbalıq zolaqları', desc:'Qırmızı balıqdan (qızılbalıq) incə zolaq formasında, zərif premium duzlu-qurudulmuş qəlyanaltı.'},
+        sn6:{name:'Duzlu-qurudulmuş kalmar zolaqları, qarışıq', desc:'Rəngarəng kalmar zolaqları (yaşıl, qırmızı, qara, narıncı və s.), qarışıq duzlu-qurudulmuş (1 kq).'},
+        sn7:{name:'Snek Maniya mintay üzgəcləri, bibərli premium duzlu-qurudulmuş', desc:'Bibərli mintay üzgəcləri, acı duzlu-qurudulmuş balıq qəlyanaltısı.'},
+        sn8:{name:'Chipka taranka zolaqları, bibərli premium', desc:'Bibərli taranka zolaqları, premium duzlu-qurudulmuş qəlyanaltı (~1 kq).'},
+        sn9:{name:'Chipka duzlu-qurudulmuş kalmar yonqarı', desc:'Təbii açıq rəngli kalmar yonqarı, klassik duzlu-qurudulmuş qəlyanaltı.'},
+        sn10:{name:'Super Snack qorbuşa balığından duzlu-qurudulmuş çubuqlar "Çar duzlaması"', desc:'Qorbuşa balığından duzlu-qurudulmuş çubuqlar, firma qəlyanaltısı.'},
+        sn11:{name:'Mintay zolaqları (duzlu-qurudulmuş balıq məhsulu)', desc:'Mintay zolaqları, duzlu-qurudulmuş büdcəli qəlyanaltı.'},
+        sn12:{name:'Chipka duzlu-qurudulmuş kalmar yarımhəlqələri', desc:'Yarımhəlqə formasında duzlu-qurudulmuş kalmar, zərif dəniz məhsulu qəlyanaltısı.'},
+        sn13:{name:'Snek Maniya lipar balığı parçaları, premium bibərli duzlu-qurudulmuş', desc:'Bibərli kubik formasında lipar balığı, acı premium variant.'},
+        sn14:{name:'Bibərli taranka zolaqları (premium duzlu-qurudulmuş)', desc:'Bibərli taranka zolaqları, pivəyə klassik acı qəlyanaltı (~1 kq).'},
       }
     },
     ru: {
@@ -1423,6 +1433,7 @@
         ${inStock ? '' : `<div class="stock-badge">${t('outOfStock')}</div>`}
         ${mediaHtml(p)}
       </div>
+      <div class="card-body">
         <div class="card-tag">${t('categories.' + p.cat)}</div>
         <div class="card-name">${info.name}</div>
         <div class="card-bottom">
