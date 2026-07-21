@@ -443,4 +443,1349 @@
     overflow-y:auto; -webkit-overflow-scrolling:touch;
   }
   .drawer.show{ transform:translateY(0); }
-  .drawer-handle{ width:36px;height:4px; background:var(--line-strong); border-radius:3px; margin:12px auto 6px;
+  .drawer-handle{ width:36px;height:4px; background:var(--line-strong); border-radius:3px; margin:12px auto 6px; flex-shrink:0; }
+  .drawer-head{ display:flex; align-items:center; justify-content:space-between; padding:6px 22px 14px; border-bottom:1px solid var(--line); flex-shrink:0; }
+  .drawer-head h3{ font-family:'Bodoni Moda',serif; font-size:22px; color:var(--cream); font-weight:600; margin:0; }
+  .drawer-items{ padding:6px 22px; flex-shrink:0; }
+  .drawer-empty{ padding:40px 0; text-align:center; color:var(--muted); font-size:13.5px; }
+  .d-item{ display:flex; gap:12px; align-items:center; padding:14px 0; border-bottom:1px solid var(--line); }
+  .d-item .fillet{ width:52px;height:52px; flex-shrink:0; box-shadow:none; }
+  .d-item .media-plate{ width:52px;height:52px; flex-shrink:0; border-radius:50%; border:1px solid var(--line); }
+  .d-item .media-plate::before{ display:none; }
+  .d-item .media-plate svg{ width:20px;height:20px; }
+  .d-item-info{ flex:1; min-width:0; }
+  .d-item-info .n{ font-family:'Bodoni Moda',serif; font-size:16.5px; color:var(--cream); font-weight:600; }
+  .d-item-info .p{ font-size:12px; color:var(--muted); margin-top:2px; }
+  .d-item .remove{ background:none; border:none; color:var(--muted-2); width:22px;height:22px; }
+  .d-item .remove svg{ width:14px;height:14px; }
+  .drawer-foot{ padding:16px 22px 26px; border-top:1px solid var(--line); }
+  .drawer-foot .sum-row{ display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:6px; }
+  .drawer-foot .sum-row.total{ font-size:18px; color:var(--cream); font-weight:700; margin-bottom:16px; }
+  .checkout-btn{
+    width:100%; background:var(--mint); color:#ffffff; border:none; border-radius:30px;
+    padding:16px; font-size:13px; font-weight:800; letter-spacing:.1em; text-transform:uppercase;
+    transition:opacity .2s;
+  }
+  .checkout-btn:disabled{ opacity:.55; }
+
+  /* ---------- ORDER FORM ---------- */
+  .order-form{ padding:4px 0 18px; border-top:1px solid var(--line); margin-top:4px; }
+  .order-form .of-title{
+    font-family:'Bodoni Moda',serif; font-size:17px; color:var(--cream); font-weight:600;
+    margin:14px 0 10px;
+  }
+  .of-field{ margin-bottom:10px; }
+  .of-field label{
+    display:block; font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); font-weight:700; margin-bottom:6px;
+  }
+  .of-field input, .of-field textarea{
+    width:100%; background:var(--panel-2); border:1px solid var(--line-strong); border-radius:12px;
+    padding:11px 13px; font-size:13.5px; color:var(--text); font-family:inherit;
+  }
+  .of-field input::placeholder, .of-field textarea::placeholder{ color:var(--muted-2); }
+  .of-field input:focus, .of-field textarea:focus{ outline:none; border-color:var(--mint); }
+  .of-field textarea{ resize:vertical; min-height:56px; }
+  .of-type{ display:flex; gap:8px; }
+  .of-type button{
+    flex:1; padding:10px 0; border-radius:12px; border:1px solid var(--line-strong);
+    background:transparent; color:var(--muted); font-size:12.5px; font-weight:700;
+  }
+  .of-type button.active{ background:var(--mint); color:#ffffff; border-color:var(--mint); }
+  .of-error{ color:#c0392b; font-size:11.5px; margin-top:4px; display:none; }
+  .of-error.show{ display:block; }
+
+  /* ---------- PRODUCT MODAL ---------- */
+  .card{ cursor:pointer; }
+  .pm-overlay{
+    position:fixed; inset:0; background:rgba(18,14,10,0.5);
+    backdrop-filter:blur(2px);
+    opacity:0; pointer-events:none; transition:opacity .3s;
+    z-index:90;
+  }
+  .pm-overlay.show{ opacity:1; pointer-events:auto; }
+  .product-modal{
+    position:fixed; left:0; right:0; bottom:0; z-index:95;
+    background:linear-gradient(180deg, #ffffff, #fbf6ee);
+    border-top:1px solid var(--line-strong);
+    border-radius:24px 24px 0 0;
+    max-width:460px; margin:0 auto;
+    transform:translateY(100%); transition:transform .4s cubic-bezier(.2,.8,.2,1);
+    max-height:92vh; display:flex; flex-direction:column;
+    box-shadow:0 -20px 50px rgba(20,26,46,0.18);
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+  }
+  .product-modal.show{ transform:translateY(0); }
+  .pm-handle{ width:36px;height:4px; background:var(--line-strong); border-radius:3px; margin:12px auto 0; flex-shrink:0; }
+  .pm-close{
+    position:absolute; top:14px; right:14px; width:34px;height:34px; border-radius:50%;
+    background:rgba(255,255,255,0.9); border:1px solid var(--line); color:var(--text);
+    display:flex; align-items:center; justify-content:center; z-index:2;
+  }
+  .pm-close svg{ width:15px;height:15px; }
+  .pm-media{
+    position:relative; margin:14px 20px 0; height:230px; border-radius:var(--radius-lg);
+    overflow:hidden; background:linear-gradient(180deg, #fdfaf3, #f6efe1);
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .pm-media img{ width:100%; height:100%; object-fit:cover; }
+  .pm-media .media-plate{ width:100%; height:100%; }
+  .pm-media .media-plate svg{ width:56px; height:56px; }
+  .pm-stock-badge{
+    position:absolute; left:12px; top:12px; z-index:2;
+    background:rgba(24,20,14,0.82); color:#fff;
+    font-size:9.5px; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+    padding:6px 11px; border-radius:20px;
+  }
+  .pm-body{ padding:18px 22px 24px; }
+  .pm-tag{ font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:var(--mint-dim); font-weight:800; }
+  .pm-name{ font-family:'Bodoni Moda',serif; font-size:25px; color:var(--cream); font-weight:600; line-height:1.15; margin:8px 0 8px; }
+  .pm-price{ font-size:16px; font-weight:700; color:var(--text); margin-bottom:20px; }
+  .pm-price span{ color:var(--muted); font-weight:500; font-size:12.5px; }
+  .pm-desc{ font-size:13.5px; line-height:1.55; color:var(--muted); margin:-10px 0 18px; }
+  .pm-qty-label{ font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:700; margin-bottom:10px; }
+  .pm-qty-row{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+  .pm-qty-btn{
+    width:38px;height:38px; border-radius:50%; border:1px solid var(--line-strong);
+    background:var(--panel-2); color:var(--text); display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; transition:background .15s, transform .15s;
+  }
+  .pm-qty-btn:active{ transform:scale(.92); }
+  .pm-qty-btn svg{ width:15px;height:15px; }
+  .pm-qty-input{
+    width:64px; text-align:center; font-size:18px; font-weight:800; color:var(--ink);
+    border:1px solid var(--line-strong); border-radius:12px; padding:9px 4px;
+    font-family:inherit; background:var(--panel-2);
+    -moz-appearance:textfield;
+  }
+  .pm-qty-input::-webkit-outer-spin-button, .pm-qty-input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .pm-qty-input:focus{ outline:none; border-color:var(--mint); }
+  .pm-slider{
+    -webkit-appearance:none; appearance:none; width:100%; height:4px; border-radius:3px;
+    background:var(--line-strong); outline:none; margin:18px 0 22px;
+  }
+  .pm-slider::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:22px; height:22px; border-radius:50%;
+    background:var(--mint); border:3px solid #ffffff; box-shadow:0 2px 8px rgba(20,26,46,0.3);
+    cursor:pointer;
+  }
+  .pm-slider::-moz-range-thumb{
+    width:22px; height:22px; border-radius:50%; border:3px solid #ffffff;
+    background:var(--mint); box-shadow:0 2px 8px rgba(20,26,46,0.3); cursor:pointer;
+  }
+  .pm-add-btn{
+    width:100%; background:var(--mint); color:#ffffff; border:none; border-radius:30px;
+    padding:16px; font-size:13.5px; font-weight:800; letter-spacing:.06em;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    transition:transform .15s, opacity .2s;
+  }
+  .pm-add-btn:active{ transform:scale(.98); }
+  .pm-add-btn .pm-add-total{ font-weight:800; }
+
+  /* ---------- TOAST ---------- */
+  .toast{
+    position:fixed; left:50%; top:70px; transform:translateX(-50%) translateY(-20px);
+    background:var(--mint); color:#ffffff; padding:11px 20px; border-radius:30px;
+    font-size:12.5px; font-weight:700; z-index:100; opacity:0; transition:.35s;
+    box-shadow:0 10px 30px rgba(255,106,61,.28); white-space:nowrap;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+
+  /* ---------- LIGHT SWEEP (ambient background effect) ---------- */
+  .light-sweep{
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:linear-gradient(115deg, transparent 30%, rgba(255,106,61,0.04) 45%, rgba(255,106,61,0.09) 50%, rgba(255,106,61,0.04) 55%, transparent 70%);
+    background-size:300% 300%;
+    animation: sweep 9s ease-in-out infinite;
+    mix-blend-mode: multiply;
+  }
+  @keyframes sweep{
+    0%{ background-position:0% 0%; }
+    50%{ background-position:100% 100%; }
+    100%{ background-position:0% 0%; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .light-sweep{ animation:none !important; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+<div class="device" id="device">
+  <div class="light-sweep"></div>
+
+  <!-- TOP NAV -->
+  <div class="topnav">
+    <button class="icon-btn" id="menuBtn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <div class="logo">
+      <svg viewBox="0 0 100 20" fill="none"><path d="M2 12c6-8 10 8 16 0s10 8 16 0 10 8 16 0 10 8 16 0 10 8 16 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <div class="word">SEAFOODS</div>
+      <div class="sub">PREMIUM FISH</div>
+    </div>
+    <button class="icon-btn" id="cartBtn" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" width="21" height="21"><path d="M6 8h12l-1 12H7L6 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V6a3 3 0 0 1 6 0v2" stroke="currentColor" stroke-width="1.6"/></svg>
+      <span class="cart-badge" id="cartBadge">0</span>
+    </button>
+  </div>
+
+  <!-- SIDE MENU -->
+  <div class="overlay" id="overlay"></div>
+  <div class="side-menu" id="sideMenu">
+    <button class="icon-btn close-x" id="closeMenuBtn">
+      <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+    <div class="lang-row" id="langRow"></div>
+    <nav id="sideNav">
+      <a href="#catalog" class="menu-link" data-target="catalog"><span data-i18n="nav.menu"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#contacts" class="menu-link" data-target="contacts"><span data-i18n="nav.about"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#contacts" class="menu-link" data-target="contacts"><span data-i18n="nav.delivery"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href="#contacts" class="menu-link" data-target="contacts"><span data-i18n="nav.contacts"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </nav>
+    <div class="socials">
+      <a href="https://www.instagram.com/seafoodsdenizmehsullari" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+      </a>
+      <a href="https://t.me/+994558718393" target="_blank" rel="noopener" aria-label="Telegram">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M21 4L3 11.5l6 2 2 6 3-4 5 3 2-14.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="https://wa.me/994558718393" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="none" width="16" height="16"><path d="M6 18l1-4a7 7 0 1 1 3 3l-4 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- BRAND BANNER -->
+  <!-- Видео лежит как images/banner-1.mp4 —
+       если файла нет, браузер покажет images/banner.jpg как постер, ничего не сломается. -->
+  <div class="brand-banner">
+    <video class="banner-media" autoplay muted loop playsinline poster="images/banner.jpg">
+      <source src="images/banner-1.mp4" type="video/mp4">
+    </video>
+    <div class="banner-overlay"></div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="section">
+    <div class="section-head"><h2 data-i18n="sections.categories"></h2></div>
+    <div class="cat-row" id="catRow"></div>
+  </div>
+
+  <!-- CATALOG -->
+  <div class="section" id="catalog">
+    <div class="section-head">
+      <h2 id="catalogTitle"></h2>
+      <button class="see-all" id="seeAllBtn"></button>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contacts">
+    <div class="f-logo">SEAFOODS</div>
+    <div class="f-tag" data-i18n="footer.tagline"></div>
+    <div class="f-socials">
+      <a href="https://www.instagram.com/seafoodsdenizmehsullari" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg></a>
+      <a href="https://t.me/+994558718393" target="_blank" rel="noopener" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none"><path d="M21 4L3 11.5l6 2 2 6 3-4 5 3 2-14.5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></a>
+      <a href="https://wa.me/994558718393" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none"><path d="M6 18l1-4a7 7 0 1 1 3 3l-4 1Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></a>
+    </div>
+    <div class="copyright" data-i18n="footer.copyright"></div>
+  </footer>
+
+  <!-- STICKY CART BAR -->
+  <div class="cart-bar" id="cartBar">
+    <div class="cb-left"><span class="cb-count" id="cbCount">0</span> <span id="cbLabel"></span> · <span class="cb-sum" id="cbSum">0</span></div>
+    <button class="cb-btn" id="openDrawerBtn"><span id="cbBtnLabel"></span> <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="overlay" id="drawerOverlay"></div>
+  <div class="drawer" id="drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-head"><h3 id="drawerTitleText"></h3>
+      <button class="icon-btn" id="closeDrawerBtn"><svg viewBox="0 0 24 24" fill="none" width="18" height="18"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+    <div class="drawer-items" id="drawerItems"></div>
+    <div class="drawer-foot">
+      <div class="sum-row"><span id="deliveryLabel"></span><span id="deliveryFee"></span></div>
+      <div class="sum-row total"><span id="totalLabel"></span><span id="drawerTotal">0</span></div>
+
+      <div class="order-form" id="orderForm">
+        <div class="of-title" id="ofTitle"></div>
+        <div class="of-field">
+          <label id="ofLabelBusiness"></label>
+          <input type="text" id="ofBusiness" placeholder="">
+        </div>
+        <div class="of-field">
+          <label id="ofLabelContact"></label>
+          <input type="text" id="ofContact" placeholder="">
+        </div>
+        <div class="of-field">
+          <label id="ofLabelPhone"></label>
+          <input type="tel" id="ofPhone" placeholder="">
+        </div>
+        <div class="of-field">
+          <label id="ofLabelAddress"></label>
+          <input type="text" id="ofAddress" placeholder="">
+        </div>
+        <div class="of-field">
+          <label id="ofLabelType"></label>
+          <div class="of-type">
+            <button type="button" class="active" id="ofTypeOnce"></button>
+            <button type="button" id="ofTypeRegular"></button>
+          </div>
+        </div>
+        <div class="of-field">
+          <label id="ofLabelComment"></label>
+          <textarea id="ofComment" placeholder=""></textarea>
+        </div>
+        <div class="of-error" id="ofError"></div>
+      </div>
+
+      <button class="checkout-btn" id="checkoutBtn"></button>
+    </div>
+  </div>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="pm-overlay" id="pmOverlay"></div>
+  <div class="product-modal" id="productModal">
+    <div class="pm-handle"></div>
+    <button class="pm-close" id="pmCloseBtn"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <div class="pm-media" id="pmMedia"></div>
+    <div class="pm-body">
+      <div class="pm-tag" id="pmTag"></div>
+      <div class="pm-name" id="pmName"></div>
+      <div class="pm-price" id="pmPrice"></div>
+      <div class="pm-desc" id="pmDesc"></div>
+      <div class="pm-qty-label" id="pmQtyLabel"></div>
+      <div class="pm-qty-row">
+        <button class="pm-qty-btn" id="pmDec"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+        <input type="number" class="pm-qty-input" id="pmQtyInput" min="1" value="1">
+        <button class="pm-qty-btn" id="pmInc"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
+      </div>
+      <input type="range" class="pm-slider" id="pmSlider" min="1" max="30" value="1" step="1">
+      <button class="pm-add-btn" id="pmAddBtn">
+        <span id="pmAddLabel"></span> <span class="pm-add-total" id="pmAddTotal"></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+</div>
+
+<script>
+(function(){
+  // ---------------- I18N ----------------
+  const I18N = {
+    az: {
+      nav:{menu:'Menyu', about:'Haqqımızda', delivery:'Çatdırılma', contacts:'Əlaqə'},
+      hero:[
+        {eyebrow:'Premium balıq', titleMain:'Ən yaxşısı', titleAccent:'okeandan', p:'Ən yüksək keyfiyyətli vəhşi balıq, gün ərzində masanıza çatdırılır.'},
+        {eyebrow:'Günün təzəliyi', titleMain:'Norveç', titleAccent:'qızılbalığı', p:'Tutulduqdan bir gün sonra seçilir və çatdırılır, dad və toxuma qorunur.'},
+        {eyebrow:'Xüsusi anlar üçün', titleMain:'Nadir', titleAccent:'delikateslər', p:'Kamçatka krabı, dəniz daraqcığı və kürü — yaddaqalan masa üçün.'}
+      ],
+      cta:'Menyuya bax',
+      sections:{categories:'Kateqoriyalar', popular:'Populyar', seeAll:'Hamısına bax', hide:'Gizlət'},
+      categories:{all:'Hamısı', fresh:'Təzə balıq', frozen:'Donmuş balıq', smoked:'Hisə balıq', seafood:'Dəniz məhsulları', snacks:'Snəklər', other:'Digər'},
+      features:[
+        {title:'Vəhşi balıq', desc:'Yalnız təbii mühitdən tutulan vəhşi balıq, fermasız və antibiotiksiz.'},
+        {title:'Qüsursuz təzəlik', desc:'Sürətli logistika və soyuq zəncir sayəsində tutulduğu gün çatdırırıq.'},
+        {title:'Premium keyfiyyət', desc:'Hər partiyanın keyfiyyət, ölçü və yağlılıq standartlarına uyğun seçimi.'}
+      ],
+      footer:{tagline:'Çatdırılma ilə premium balıq və dəniz məhsulları', copyright:'© 2026 Seafoods. Bütün hüquqlar qorunur.'},
+      cart:{items:'məhsul', cartBtn:'Səbət', drawerTitle:'Səbətiniz', empty:'Səbətiniz hələ boşdur', delivery:'Çatdırılma', free:'Pulsuz', total:'Cəmi', checkout:'Sifarişi tamamla'},
+      orderForm:{
+        title:'Sifariş məlumatları', business:'Müəssisənin adı', businessPh:'Məsələn, "Dəniz" restoranı',
+        contact:'Əlaqədar şəxs', contactPh:'Adınız Soyadınız', phone:'Telefon', phonePh:'+994 XX XXX XX XX',
+        address:'Ünvan', addressPh:'Çatdırılma ünvanı', type:'Sifariş növü', once:'Birdəfəlik', regular:'Mütəmadi',
+        comment:'Şərh', commentPh:'Əlavə qeyd (istəyə bağlı)',
+        errRequired:'Zəhmət olmasa bütün vacib xanaları doldurun', sending:'Göndərilir...', sendError:'Göndərmək mümkün olmadı, yenidən cəhd edin'
+      },
+      toast:{added:(n)=>`${n} səbətə əlavə olundu`, orderPlaced:'Sifariş qəbul edildi! Sizinlə əlaqə saxlayacağıq'},
+      units:{kg:'kq', whole:'bütöv', pcs:'ədəd', pack500:'qab 500q', pack190:'bank 190q'}, outOfStock:'Bitib',
+      pm:{qty:'Miqdar', add:'Səbətə əlavə et', inCart:'Səbətdə', total:'Cəmi'},
+      products:{
+        fr1:{name:'Beluqa (bütöv)'},
+        fr2:{name:'Beluqa (kq)'},
+        fr3:{name:'Asetrina (bütöv)'},
+        fr4:{name:'Asetrina (kq)'},
+        fr5:{name:'Semqa'},
+        fr6:{name:'Forel 350–500 q'},
+        fr7:{name:'Forel 2 kq-dan'},
+        fr8:{name:'Forel 3 kq-dan'},
+        fr9:{name:'Çupra 400–600 q'},
+        fr10:{name:'Çupra 800–1000 q'},
+        fr11:{name:'Çupra 1000–1500 q'},
+        fr12:{name:'Sibas 400–600 q'},
+        fr13:{name:'Sibas 800–1000 q'},
+        fr14:{name:'Sibas 1000–1500 q'},
+        fr15:{name:'Kutum'},
+        fz1:{name:'Semqa (donmuş)'},
+        fz2:{name:'Asetrina, başsız (donmuş)'},
+        fz3:{name:'Sudak 1 kq'},
+        fz4:{name:'Sudak 1.5 kq'},
+        fz5:{name:'Tilapiya file'},
+        sm1:{name:'Çupra isti hisə'},
+        sm2:{name:'Forel isti hisə'},
+        sm3:{name:'Beluqa isti hisə'},
+        sm4:{name:'Beluqa soyuq hisə'},
+        sm5:{name:'Semqa soyuq hisə'},
+        sm6:{name:'Asetrina file, soyuq hisə'},
+        sm7:{name:'Asetrina file, isti hisə'},
+        sm8:{name:'Bütöv asetrina, isti hisə'},
+        sm9:{name:'Semqa Yukola, soyuq hisə'},
+        sm10:{name:'Yağlı balıq (ESK), soyuq hisə'},
+        sm11:{name:'Danimarka foreli, hisə'},
+        sf1:{name:'Kral krevetka 40/50, bişmiş'},
+        sf2:{name:'Kral krevetka, isti hisə'},
+        sf3:{name:'Çay krevetkası, iri seçmə'},
+        sf4:{name:'Çay krevetkası, qarışıq'},
+        sf5:{name:'Xırda krevetka'},
+        sf6:{name:'Dəniz krevetkası, iri seçmə'},
+        sf7:{name:'Dəniz krevetkası, qarışıq'},
+        sf8:{name:'Maqadan krevetkası'},
+        sf9:{name:'Vakuum krevetka, təmizlənmiş 90/120'},
+        sf10:{name:'Vakuum krevetka 16/20'},
+        sf11:{name:'Qara Pələng krevetka'},
+        sf12:{name:'Qara midiya'},
+        sf13:{name:'Yaşıl midiya'},
+        sf14:{name:'Təzə rak'},
+        sf15:{name:'Kamçatka krabı, hazır, bütöv'},
+        sf16:{name:'Lobster 400 q'},
+        sf17:{name:'Krab çubuqları (donmuş)'},
+        ot1:{name:'Hörük pendiri, bişmiş'},
+        ot2:{name:'Hörük pendiri, adi'},
+        ot3:{name:'Hisə toyuq boynu'},
+        ot4:{name:'Hisə toyuq budu'},
+        ot5:{name:'Hisə bildirçin (1 ədəd)'},
+        ot6:{name:'Toyuq içalatı'},
+        ot7:{name:'Vakuum silyodka 500 q'},
+        ot8:{name:'"Russkoye More", dilimlənmiş 500 q'},
+        ot9:{name:'Şprot "5 dəniz"'},
+        ot10:{name:'Yağda şprot 190 q'},
+        ot11:{name:'Vakuum skumbriya'},
+        sn1:{name:'Stack Jack Qurudulmuş kalmar "Pyataçkalar"', desc:'Pyataçka/sikkə formasında qurudulmuş kalmar parçaları, pivəyə duzlu-qurudulmuş snek.'},
+        sn2:{name:'Главснэк Qurudulmuş kalmar hot-teys istili bibərlə', desc:'Qırmızı qurudulmuş kalmar (zolaq/filet), acı bibərli, duzlu-qurudulmuş dəniz məhsulu (~1 kq).'},
+        sn3:{name:'Snek Maniya Lipar balığı parçaları premium duzlu-qurudulmuş', desc:'Premium lipar balığı parça/lavaş formasında, xırtıldayan duzlu-qurudulmuş pivə snek-i.'},
+        sn4:{name:'Chipka Krab dadlı kalmar yonqarı qurudulmuş-vəlenmiş', desc:'Krab ətirli kalmar yonqarı, məşhur qurudulmuş-vəlenmiş snek (1 kq).'},
+        sn5:{name:'Qurudulmuş-vəlenmiş "Sёmqa" qızılbalıq pauçinkası', desc:'Qırmızı balıqdan (qızılbalıq/sёmqa) incə pauçinka/saman formasında, zərif premium qurudulmuş-vəlenmiş snek.'},
+        sn6:{name:'Qurudulmuş kalmar "Dəniz pauçinkası MİKS"', desc:'Rəngarəng kalmar pauçinkası (yaşıl, qırmızı, qara, narıncı və s.), qurudulmuş mikst (1 kq).'},
+        sn7:{name:'Snek Maniya Mintay (kürəkləri) bibərli premium duzlu-qurudulmuş', desc:'Bibərli mintay kürəkləri, acı duzlu-qurudulmuş balıq snek-i.'},
+        sn8:{name:'Chipka Taranka saman bibərli Premium', desc:'Bibərli taranka (voblya/taran) saman formasında, premium qurudulmuş-vəlenmiş (~1 kq).'},
+        sn9:{name:'Chipka Kalmar yonqarı qurudulmuş-vəlenmiş', desc:'Təbii açıq rəngli kalmar yonqarı, klassik qurudulmuş-vəlenmiş snek.'},
+        sn10:{name:'Super Snack Qorbuşa balığından vəlenmiş çubuqlar "Çar duzlaması"', desc:'Qorbuşa balığından vəlenmiş çubuq/zolaqlar, firma snek-i.'},
+        sn11:{name:'Mintay samanı (qurudulmuş qida balıq məhsulu)', desc:'Mintay saman/zolaqları, duzlu-qurudulmuş büdcəli qəlyanaltı.'},
+        sn12:{name:'Chipka Vəlenmiş kalmar yarımhəlqə / lapşa', desc:'Yarımhəlqə və ya geniş lapşa formasında vəlenmiş kalmar, zərif dəniz məhsulu snek-i.'},
+        sn13:{name:'Snek Maniya Lipar balığı parçaları premium bibərli duzlu-qurudulmuş', desc:'Bibərli kubik formasında lipar balığı, acı premium variant.'},
+        sn14:{name:'Bibərli taranka (premium qurudulmuş saman)', desc:'Bibərli taranka/balıq samanı, pivəyə klassik acı qəlyanaltı (~1 kq).'},
+      }
+    },
+    ru: {
+      nav:{menu:'Меню', about:'О нас', delivery:'Доставка', contacts:'Контакты'},
+      hero:[
+        {eyebrow:'Премиальная рыба', titleMain:'Лучшее', titleAccent:'из океана', p:'Дикая рыба высшего качества с доставкой к вашему столу день в день.'},
+        {eyebrow:'Свежесть дня', titleMain:'Норвежский', titleAccent:'лосось', p:'Отбираем и доставляем в течение суток после вылова, сохраняя вкус и текстуру.'},
+        {eyebrow:'Для особых моментов', titleMain:'Редкие', titleAccent:'деликатесы', p:'Камчатский краб, гребешок и икра — для стола, который запомнят.'}
+      ],
+      cta:'Смотреть меню',
+      sections:{categories:'Категории', popular:'Популярное', seeAll:'Смотреть всё', hide:'Скрыть'},
+      categories:{all:'Все', fresh:'Свежая рыба', frozen:'Замороженная рыба', smoked:'Копчёная рыба', seafood:'Морепродукты', snacks:'Снеки', other:'Прочее'},
+      features:[
+        {title:'Дикая рыба', desc:'Только дикая рыба из естественной среды обитания, без ферм и антибиотиков.'},
+        {title:'Безупречная свежесть', desc:'Доставляем в день вылова благодаря экспресс-логистике и холодовой цепи.'},
+        {title:'Премиальное качество', desc:'Отбор по строгим стандартам качества, размера и жирности каждой партии.'}
+      ],
+      footer:{tagline:'Премиальная рыба и морепродукты с доставкой', copyright:'© 2026 Seafoods. Все права защищены.'},
+      cart:{items:'товара', cartBtn:'Корзина', drawerTitle:'Ваша корзина', empty:'Ваша корзина пока пуста', delivery:'Доставка', free:'Бесплатно', total:'Итого', checkout:'Оформить заказ'},
+      orderForm:{
+        title:'Данные заказа', business:'Название заведения', businessPh:'Например, ресторан «Океан»',
+        contact:'Контактное лицо', contactPh:'Имя Фамилия', phone:'Телефон', phonePh:'+994 XX XXX XX XX',
+        address:'Адрес', addressPh:'Адрес доставки', type:'Тип заказа', once:'Разовый', regular:'Регулярный',
+        comment:'Комментарий', commentPh:'Дополнительное примечание (необязательно)',
+        errRequired:'Пожалуйста, заполните все обязательные поля', sending:'Отправка...', sendError:'Не удалось отправить, попробуйте ещё раз'
+      },
+      toast:{added:(n)=>`${n} добавлен в корзину`, orderPlaced:'Заказ оформлен! Мы свяжемся с вами'},
+      units:{kg:'кг', whole:'целиком', pcs:'шт', pack500:'уп. 500г', pack190:'банка 190г'}, outOfStock:'Нет в наличии',
+      pm:{qty:'Количество', add:'Добавить в корзину', inCart:'В корзине', total:'Итого'},
+      products:{
+        fr1:{name:'Белуга (целая)'},
+        fr2:{name:'Белуга (по кг)'},
+        fr3:{name:'Осетрина (целая)'},
+        fr4:{name:'Осетрина (по кг)'},
+        fr5:{name:'Сёмга'},
+        fr6:{name:'Форель 350–500 г'},
+        fr7:{name:'Форель от 2 кг'},
+        fr8:{name:'Форель от 3 кг'},
+        fr9:{name:'Дорадо (Чупра) 400–600 г'},
+        fr10:{name:'Дорадо (Чупра) 800–1000 г'},
+        fr11:{name:'Дорадо (Чупра) 1000–1500 г'},
+        fr12:{name:'Сибас 400–600 г'},
+        fr13:{name:'Сибас 800–1000 г'},
+        fr14:{name:'Сибас 1000–1500 г'},
+        fr15:{name:'Кутум'},
+        fz1:{name:'Сёмга (заморож.)'},
+        fz2:{name:'Осетрина без головы (заморож.)'},
+        fz3:{name:'Судак 1 кг'},
+        fz4:{name:'Судак 1.5 кг'},
+        fz5:{name:'Тилапия филе'},
+        sm1:{name:'Дорадо горячего копчения'},
+        sm2:{name:'Форель горячего копчения'},
+        sm3:{name:'Белуга горячего копчения'},
+        sm4:{name:'Белуга холодного копчения'},
+        sm5:{name:'Сёмга холодного копчения'},
+        sm6:{name:'Осетрина, филе холодного копчения'},
+        sm7:{name:'Осетрина, филе горячего копчения'},
+        sm8:{name:'Осетрина целая горячего копчения'},
+        sm9:{name:'Сёмга Юкола холодного копчения'},
+        sm10:{name:'Масляная рыба (ESK) холодного копчения'},
+        sm11:{name:'Форель датская копчёная'},
+        sf1:{name:'Королевская креветка 40/50, варёная'},
+        sf2:{name:'Королевская креветка гор. копчения'},
+        sf3:{name:'Речная креветка, крупная отборная'},
+        sf4:{name:'Речная креветка, смешанная'},
+        sf5:{name:'Креветка мелкая («семечки»)'},
+        sf6:{name:'Морская креветка, крупная отборная'},
+        sf7:{name:'Морская креветка, смешанная'},
+        sf8:{name:'Креветка Магаданская'},
+        sf9:{name:'Креветка в вакууме, очищ. 90/120'},
+        sf10:{name:'Креветка в вакууме 16/20'},
+        sf11:{name:'Креветка «Чёрный тигр»'},
+        sf12:{name:'Мидии чёрные'},
+        sf13:{name:'Мидии зелёные'},
+        sf14:{name:'Рак свежий'},
+        sf15:{name:'Краб Камчатка, приготовл., целый'},
+        sf16:{name:'Лобстер 400 г'},
+        sf17:{name:'Крабовые палочки (заморож.)'},
+        ot1:{name:'Сыр косичка, варёная'},
+        ot2:{name:'Сыр косичка, обычная'},
+        ot3:{name:'Копчёная куриная шея'},
+        ot4:{name:'Копчёные куриные ножки'},
+        ot5:{name:'Копчёная перепёлка (1 шт)'},
+        ot6:{name:'Куриные потроха'},
+        ot7:{name:'Селёдка вакуумная 500 г'},
+        ot8:{name:'«Русское море», нарезка 500 г'},
+        ot9:{name:'Шпроты «5 морей»'},
+        ot10:{name:'Шпроты в масле 190 г'},
+        ot11:{name:'Скумбрия в вакууме'},
+        sn1:{name:'Stack Jack Кальмар сушёный "Пятачки"', desc:'Сушёные кусочки кальмара в форме пятачков/монеток, солёно-сушёный снек к пиву.'},
+        sn2:{name:'Главснэк Кальмар сушёный с перцем хот-тейс', desc:'Красный сушёный кальмар (полоски/филе) с острым перцем, солёно-сушёный морепродукт (~1 кг).'},
+        sn3:{name:'Снэк Мания Липаровая рыба кусочки премиум солёно-сушёная', desc:'Липаровая рыба премиум в кусочках/лепёшках, хрустящий солёно-сушёный снек к пиву.'},
+        sn4:{name:'Chipka Кальмар стружка со вкусом краба сушёно-вяленый', desc:'Стружка кальмара с ароматом краба, популярный сушёно-вяленый снек (1 кг).'},
+        sn5:{name:'Паутинка сушёно-вяленая Лососевая "Сёмга"', desc:'Тонкая паутинка/соломка из красной рыбы (лососевая/сёмга), нежный премиум сушёно-вяленый снек.'},
+        sn6:{name:'Кальмар сушёный "Морская паутинка МИКС"', desc:'Разноцветная паутинка кальмара (зелёный, красный, чёрный, оранжевый и др.), сушёный микс (1 кг).'},
+        sn7:{name:'Снэк Мания Минтай (спинки) с перцем премиум солёно-сушёный', desc:'Спинки минтая с перцем, острый солёно-сушёный рыбный снек.'},
+        sn8:{name:'Chipka Таранка соломка с перцем Premium', desc:'Таранка (вобла/тарань) соломкой с перцем, премиум сушёно-вяленая (~1 кг).'},
+        sn9:{name:'Chipka Кальмар стружка сушёно-вяленый', desc:'Натуральная светлая стружка кальмара, классический сушёно-вяленый снек.'},
+        sn10:{name:'Super Snack Палочки вяленые на горбуши "Царский посол"', desc:'Вяленые палочки/полоски из горбуши, фирменный снек.'},
+        sn11:{name:'Соломка минтая (сушёная пищевая рыбная продукция)', desc:'Соломка/полоски из минтая, солёно-сушёная бюджетная закуска.'},
+        sn12:{name:'Chipka Кальмар вяленый полукольца / лапша', desc:'Вяленый кальмар в форме полуколец или широкой лапши, нежный морепродуктовый снек.'},
+        sn13:{name:'Снэк Мания Липаровая рыба кусочки премиум с перцем солёно-сушёная', desc:'Липаровая рыба в кубиках с перцем, острый премиум вариант.'},
+        sn14:{name:'Таранка с перцем (премиум сушёная соломка)', desc:'Таранка/рыбная соломка с перцем, классическая острая закуска к пиву (~1 кг).'},
+      }
+    },
+    en: {
+      nav:{menu:'Menu', about:'About', delivery:'Delivery', contacts:'Contacts'},
+      hero:[
+        {eyebrow:'Premium fish', titleMain:'The best', titleAccent:'of the ocean', p:'Wild-caught fish of the highest quality, delivered to your table the same day.'},
+        {eyebrow:'Freshness of the day', titleMain:'Norwegian', titleAccent:'salmon', p:'Selected and delivered within a day of catch, preserving flavor and texture.'},
+        {eyebrow:'For special occasions', titleMain:'Rare', titleAccent:'delicacies', p:'Kamchatka crab, scallop and caviar — for a table people remember.'}
+      ],
+      cta:'View menu',
+      sections:{categories:'Categories', popular:'Popular', seeAll:'View all', hide:'Hide'},
+      categories:{all:'All', fresh:'Fresh fish', frozen:'Frozen fish', smoked:'Smoked fish', seafood:'Seafood', snacks:'Snacks', other:'Other'},
+      features:[
+        {title:'Wild fish', desc:'Only wild fish from its natural habitat, no farms or antibiotics.'},
+        {title:'Impeccable freshness', desc:"Delivered the day of catch thanks to express logistics and a cold chain."},
+        {title:'Premium quality', desc:'Selected to strict standards of quality, size and fat content in every batch.'}
+      ],
+      footer:{tagline:'Premium fish and seafood, delivered', copyright:'© 2026 Seafoods. All rights reserved.'},
+      cart:{items:'items', cartBtn:'Cart', drawerTitle:'Your cart', empty:'Your cart is empty', delivery:'Delivery', free:'Free', total:'Total', checkout:'Place order'},
+      orderForm:{
+        title:'Order details', business:'Business name', businessPh:'e.g. "Ocean" restaurant',
+        contact:'Contact person', contactPh:'Full name', phone:'Phone', phonePh:'+994 XX XXX XX XX',
+        address:'Address', addressPh:'Delivery address', type:'Order type', once:'One-time', regular:'Recurring',
+        comment:'Comment', commentPh:'Additional note (optional)',
+        errRequired:'Please fill in all required fields', sending:'Sending...', sendError:'Failed to send, please try again'
+      },
+      toast:{added:(n)=>`${n} added to cart`, orderPlaced:"Order placed! We'll contact you shortly"},
+      units:{kg:'kg', whole:'whole', pcs:'pc', pack500:'pack 500g', pack190:'jar 190g'}, outOfStock:'Out of stock',
+      pm:{qty:'Quantity', add:'Add to cart', inCart:'In cart', total:'Total'},
+      products:{
+        fr1:{name:'Beluga sturgeon (whole)'},
+        fr2:{name:'Beluga sturgeon (by kg)'},
+        fr3:{name:'Sturgeon (whole)'},
+        fr4:{name:'Sturgeon (by kg)'},
+        fr5:{name:'Salmon'},
+        fr6:{name:'Trout 350–500 g'},
+        fr7:{name:'Trout from 2 kg'},
+        fr8:{name:'Trout from 3 kg'},
+        fr9:{name:'Sea bream 400–600 g'},
+        fr10:{name:'Sea bream 800–1000 g'},
+        fr11:{name:'Sea bream 1000–1500 g'},
+        fr12:{name:'Sea bass 400–600 g'},
+        fr13:{name:'Sea bass 800–1000 g'},
+        fr14:{name:'Sea bass 1000–1500 g'},
+        fr15:{name:'Kutum'},
+        fz1:{name:'Salmon (frozen)'},
+        fz2:{name:'Sturgeon, headless (frozen)'},
+        fz3:{name:'Pike-perch 1 kg'},
+        fz4:{name:'Pike-perch 1.5 kg'},
+        fz5:{name:'Tilapia fillet'},
+        sm1:{name:'Hot-smoked sea bream'},
+        sm2:{name:'Hot-smoked trout'},
+        sm3:{name:'Hot-smoked beluga'},
+        sm4:{name:'Cold-smoked beluga'},
+        sm5:{name:'Cold-smoked salmon'},
+        sm6:{name:'Sturgeon fillet, cold-smoked'},
+        sm7:{name:'Sturgeon fillet, hot-smoked'},
+        sm8:{name:'Whole sturgeon, hot-smoked'},
+        sm9:{name:'Salmon yukola, cold-smoked'},
+        sm10:{name:'Butterfish (ESK), cold-smoked'},
+        sm11:{name:'Danish smoked trout'},
+        sf1:{name:'King prawn 40/50, cooked'},
+        sf2:{name:'King prawn, hot-smoked'},
+        sf3:{name:'River shrimp, large selected'},
+        sf4:{name:'River shrimp, mixed'},
+        sf5:{name:'Small shrimp'},
+        sf6:{name:'Sea shrimp, large selected'},
+        sf7:{name:'Sea shrimp, mixed'},
+        sf8:{name:'Magadan shrimp'},
+        sf9:{name:'Vacuum shrimp, peeled 90/120'},
+        sf10:{name:'Vacuum shrimp 16/20'},
+        sf11:{name:'Black tiger shrimp'},
+        sf12:{name:'Black mussels'},
+        sf13:{name:'Green mussels'},
+        sf14:{name:'Fresh crayfish'},
+        sf15:{name:'Kamchatka crab, cooked, whole'},
+        sf16:{name:'Lobster 400 g'},
+        sf17:{name:'Crab sticks (frozen)'},
+        ot1:{name:'Braided cheese, boiled'},
+        ot2:{name:'Braided cheese, plain'},
+        ot3:{name:'Smoked chicken neck'},
+        ot4:{name:'Smoked chicken legs'},
+        ot5:{name:'Smoked quail (1 pc)'},
+        ot6:{name:'Chicken giblets'},
+        ot7:{name:'Vacuum herring 500 g'},
+        ot8:{name:'"Russkoye More", sliced 500 g'},
+        ot9:{name:'Sprats "5 Seas"'},
+        ot10:{name:'Sprats in oil 190 g'},
+        ot11:{name:'Vacuum mackerel'},
+        sn1:{name:'Stack Jack Dried Squid "Coins"'},
+        sn2:{name:'Glavsnek Dried Squid Hot-Teys (spicy)'},
+        sn3:{name:'Snek Mania Capelin Snack Pieces Premium'},
+        sn4:{name:'Chipka Crab-Flavored Squid Shavings'},
+        sn5:{name:'Salmon "Syomga" Dried Web Strips'},
+        sn6:{name:'Dried Squid "Sea Web Mix"'},
+        sn7:{name:'Snek Mania Pollock Backs with Pepper Premium'},
+        sn8:{name:'Chipka Roach Strips with Pepper Premium'},
+        sn9:{name:'Chipka Dried Squid Shavings'},
+        sn10:{name:'Super Snack Dried Pink Salmon Sticks "Tsarsky Posol"'},
+        sn11:{name:'Pollock Strips (dried fish snack)'},
+        sn12:{name:'Chipka Dried Squid Half-Rings / Noodles'},
+        sn13:{name:'Snek Mania Capelin Pieces with Pepper Premium'},
+        sn14:{name:'Roach Strips with Pepper (premium dried)'},
+      }
+    },
+    it: {
+      nav:{menu:'Menu', about:'Chi siamo', delivery:'Consegna', contacts:'Contatti'},
+      hero:[
+        {eyebrow:'Pesce premium', titleMain:'Il meglio', titleAccent:"dell'oceano", p:'Pesce selvatico di altissima qualità, consegnato in giornata sulla vostra tavola.'},
+        {eyebrow:'Freschezza del giorno', titleMain:'Salmone', titleAccent:'norvegese', p:'Selezionato e consegnato entro un giorno dalla pesca, mantenendo gusto e consistenza.'},
+        {eyebrow:'Per le occasioni speciali', titleMain:'Rare', titleAccent:'prelibatezze', p:'Granchio della Kamchatka, capesante e caviale — per una tavola indimenticabile.'}
+      ],
+      cta:'Vedi il menu',
+      sections:{categories:'Categorie', popular:'Popolari', seeAll:'Vedi tutto', hide:'Nascondi'},
+      categories:{all:'Tutti', fresh:'Pesce fresco', frozen:'Pesce surgelato', smoked:'Pesce affumicato', seafood:'Frutti di mare', snacks:'Snack', other:'Altro'},
+      features:[
+        {title:'Pesce selvatico', desc:'Solo pesce selvatico dal suo habitat naturale, senza allevamenti né antibiotici.'},
+        {title:'Freschezza impeccabile', desc:'Consegnato il giorno della pesca grazie alla logistica espressa e alla catena del freddo.'},
+        {title:'Qualità premium', desc:'Selezione secondo rigorosi standard di qualità, taglia e grasso per ogni lotto.'}
+      ],
+      footer:{tagline:'Pesce e frutti di mare premium, con consegna', copyright:'© 2026 Seafoods. Tutti i diritti riservati.'},
+      cart:{items:'articoli', cartBtn:'Carrello', drawerTitle:'Il tuo carrello', empty:'Il tuo carrello è vuoto', delivery:'Consegna', free:'Gratuita', total:'Totale', checkout:'Conferma ordine'},
+      orderForm:{
+        title:'Dettagli ordine', business:"Nome dell'attività", businessPh:'Es. ristorante "Ocean"',
+        contact:'Persona di contatto', contactPh:'Nome e cognome', phone:'Telefono', phonePh:'+994 XX XXX XX XX',
+        address:'Indirizzo', addressPh:'Indirizzo di consegna', type:'Tipo di ordine', once:'Singolo', regular:'Ricorrente',
+        comment:'Commento', commentPh:'Nota aggiuntiva (facoltativo)',
+        errRequired:'Compila tutti i campi obbligatori', sending:'Invio...', sendError:'Invio non riuscito, riprova'
+      },
+      toast:{added:(n)=>`${n} aggiunto al carrello`, orderPlaced:'Ordine effettuato! Ti contatteremo a breve'},
+      units:{kg:'kg', whole:'intero', pcs:'pz', pack500:'conf. 500g', pack190:'barattolo 190g'}, outOfStock:'Esaurito',
+      pm:{qty:'Quantità', add:'Aggiungi al carrello', inCart:'Nel carrello', total:'Totale'},
+      products:{
+        fr1:{name:'Beluga (intera)'},
+        fr2:{name:'Beluga (al kg)'},
+        fr3:{name:'Storione (intero)'},
+        fr4:{name:'Storione (al kg)'},
+        fr5:{name:'Salmone'},
+        fr6:{name:'Trota 350–500 g'},
+        fr7:{name:'Trota da 2 kg'},
+        fr8:{name:'Trota da 3 kg'},
+        fr9:{name:'Orata 400–600 g'},
+        fr10:{name:'Orata 800–1000 g'},
+        fr11:{name:'Orata 1000–1500 g'},
+        fr12:{name:'Branzino 400–600 g'},
+        fr13:{name:'Branzino 800–1000 g'},
+        fr14:{name:'Branzino 1000–1500 g'},
+        fr15:{name:'Kutum'},
+        fz1:{name:'Salmone (surgelato)'},
+        fz2:{name:'Storione senza testa (surgelato)'},
+        fz3:{name:'Sandra 1 kg'},
+        fz4:{name:'Sandra 1.5 kg'},
+        fz5:{name:'Filetto di tilapia'},
+        sm1:{name:'Orata affumicata a caldo'},
+        sm2:{name:'Trota affumicata a caldo'},
+        sm3:{name:'Beluga affumicata a caldo'},
+        sm4:{name:'Beluga affumicata a freddo'},
+        sm5:{name:'Salmone affumicato a freddo'},
+        sm6:{name:'Filetto di storione affumicato a freddo'},
+        sm7:{name:'Filetto di storione affumicato a caldo'},
+        sm8:{name:'Storione intero affumicato a caldo'},
+        sm9:{name:'Salmone yukola affumicato a freddo'},
+        sm10:{name:'Pesce burro (ESK) affumicato a freddo'},
+        sm11:{name:'Trota danese affumicata'},
+        sf1:{name:'Gambero reale 40/50, cotto'},
+        sf2:{name:'Gambero reale affumicato a caldo'},
+        sf3:{name:'Gambero di fiume, grande selezionato'},
+        sf4:{name:'Gambero di fiume, misto'},
+        sf5:{name:'Gamberetti piccoli'},
+        sf6:{name:'Gambero di mare, grande selezionato'},
+        sf7:{name:'Gambero di mare, misto'},
+        sf8:{name:'Gambero di Magadan'},
+        sf9:{name:'Gambero sottovuoto, sgusciato 90/120'},
+        sf10:{name:'Gambero sottovuoto 16/20'},
+        sf11:{name:'Gambero tigre nero'},
+        sf12:{name:'Cozze nere'},
+        sf13:{name:'Cozze verdi'},
+        sf14:{name:'Gambero d\'acqua dolce fresco'},
+        sf15:{name:'Granchio della Kamchatka, cotto, intero'},
+        sf16:{name:'Astice 400 g'},
+        sf17:{name:'Bastoncini di granchio (surgelati)'},
+        ot1:{name:'Formaggio a treccia, bollito'},
+        ot2:{name:'Formaggio a treccia, semplice'},
+        ot3:{name:'Collo di pollo affumicato'},
+        ot4:{name:'Cosce di pollo affumicate'},
+        ot5:{name:'Quaglia affumicata (1 pz)'},
+        ot6:{name:'Frattaglie di pollo'},
+        ot7:{name:'Aringa sottovuoto 500 g'},
+        ot8:{name:'"Russkoye More", affettato 500 g'},
+        ot9:{name:'Sprats "5 Seas"'},
+        ot10:{name:'Sprats in olio 190 g'},
+        ot11:{name:'Sgombro sottovuoto'},
+        sn1:{name:'Stack Jack Calamari essiccati "Monete"'},
+        sn2:{name:'Glavsnek Calamari essiccati piccanti hot-teys'},
+        sn3:{name:'Snek Mania Capelin a pezzi premium essiccato salato'},
+        sn4:{name:'Chipka Trucioli di calamaro al granchio essiccati'},
+        sn5:{name:'Salmone "Syomga" strisce essiccate sottili'},
+        sn6:{name:'Calamari essiccati "Rete di mare mix"'},
+        sn7:{name:'Snek Mania Merluzzo (dorsi) al pepe premium essiccato'},
+        sn8:{name:'Chipka Taranka a strisce al pepe premium'},
+        sn9:{name:'Chipka Trucioli di calamaro essiccati'},
+        sn10:{name:'Super Snack Bastoncini di salmone rosa essiccati "Tsarsky Posol"'},
+        sn11:{name:'Strisce di merluzzo essiccate'},
+        sn12:{name:'Chipka Calamari essiccati a mezzi anelli / tagliatelle'},
+        sn13:{name:'Snek Mania Capelin a pezzi al pepe premium'},
+        sn14:{name:'Taranka al pepe (striscia premium essiccata)'},
+      }
+    }
+  };
+
+  const LANGS = ['az','ru','en','it'];
+  let lang = 'az';
+  function t(path){
+    return path.split('.').reduce((o,k)=> (o == null ? o : o[k]), I18N[lang]);
+  }
+
+  // ---------------- DATA (language-independent) ----------------
+  const CAT_IDS = ['all','fresh','frozen','smoked','seafood','snacks','other'];
+  const PRODUCTS = [
+    {id:'fr1', cat:'fresh', price:30, unit:'whole', inStock:true, img:'images/beluga.jpg'},
+    {id:'fr2', cat:'fresh', price:45, unit:'kg', inStock:true, img:'images/beluga.jpg'},
+    {id:'fr3', cat:'fresh', price:50, unit:'whole', inStock:true, img:'images/asetrina.jpg'},
+    {id:'fr4', cat:'fresh', price:65, unit:'kg', inStock:true, img:'images/asetrina.jpg'},
+    {id:'fr5', cat:'fresh', price:40, unit:'kg', inStock:true, img:'images/semga.jpg'},
+    {id:'fr6', cat:'fresh', price:12, unit:'kg', inStock:true, img:'images/forel.jpg'},
+    {id:'fr7', cat:'fresh', price:13, unit:'kg', inStock:true, img:'images/forel.jpg'},
+    {id:'fr8', cat:'fresh', price:14, unit:'kg', inStock:true, img:'images/forel.jpg'},
+    {id:'fr9', cat:'fresh', price:19.9, unit:'kg', inStock:true, img:'images/chupra.jpg'},
+    {id:'fr10', cat:'fresh', price:26, unit:'kg', inStock:true, img:'images/chupra.jpg'},
+    {id:'fr11', cat:'fresh', price:28, unit:'kg', inStock:true, img:'images/chupra.jpg'},
+    {id:'fr12', cat:'fresh', price:21.9, unit:'kg', inStock:true, img:'images/sibas.jpg'},
+    {id:'fr13', cat:'fresh', price:27, unit:'kg', inStock:true, img:'images/sibas.jpg'},
+    {id:'fr14', cat:'fresh', price:29.5, unit:'kg', inStock:true, img:'images/sibas.jpg'},
+    {id:'fr15', cat:'fresh', price:15, unit:'kg', inStock:true, img:'images/kutum.jpg'},
+    {id:'fz1', cat:'frozen', price:24, unit:'kg', inStock:true},
+    {id:'fz2', cat:'frozen', price:27, unit:'kg', inStock:true},
+    {id:'fz3', cat:'frozen', price:13, unit:'kg', inStock:true},
+    {id:'fz4', cat:'frozen', price:13.5, unit:'kg', inStock:true},
+    {id:'fz5', cat:'frozen', price:9, unit:'kg', inStock:true},
+    {id:'sm1', cat:'smoked', price:29.5, unit:'kg', inStock:true},
+    {id:'sm2', cat:'smoked', price:18, unit:'kg', inStock:true},
+    {id:'sm3', cat:'smoked', price:120, unit:'kg', inStock:true},
+    {id:'sm4', cat:'smoked', price:125, unit:'kg', inStock:true},
+    {id:'sm5', cat:'smoked', price:41, unit:'kg', inStock:true},
+    {id:'sm6', cat:'smoked', price:75, unit:'kg', inStock:true},
+    {id:'sm7', cat:'smoked', price:72, unit:'kg', inStock:true},
+    {id:'sm8', cat:'smoked', price:52, unit:'kg', inStock:true},
+    {id:'sm9', cat:'smoked', price:60, unit:'kg', inStock:true},
+    {id:'sm10', cat:'smoked', price:41, unit:'kg', inStock:true},
+    {id:'sm11', cat:'smoked', price:49, unit:'kg', inStock:true},
+    {id:'sf1', cat:'seafood', price:26, unit:'kg', inStock:true},
+    {id:'sf2', cat:'seafood', price:27, unit:'kg', inStock:true},
+    {id:'sf3', cat:'seafood', price:39, unit:'kg', inStock:true},
+    {id:'sf4', cat:'seafood', price:29, unit:'kg', inStock:true},
+    {id:'sf5', cat:'seafood', price:19, unit:'kg', inStock:true},
+    {id:'sf6', cat:'seafood', price:35, unit:'kg', inStock:true},
+    {id:'sf7', cat:'seafood', price:27, unit:'kg', inStock:true},
+    {id:'sf8', cat:'seafood', price:25, unit:'kg', inStock:true},
+    {id:'sf9', cat:'seafood', price:23, unit:'kg', inStock:true},
+    {id:'sf10', cat:'seafood', price:23, unit:'kg', inStock:true},
+    {id:'sf11', cat:'seafood', price:36, unit:'kg', inStock:true},
+    {id:'sf12', cat:'seafood', price:14.5, unit:'kg', inStock:true},
+    {id:'sf13', cat:'seafood', price:32.5, unit:'kg', inStock:true},
+    {id:'sf14', cat:'seafood', price:25, unit:'kg', inStock:true},
+    {id:'sf15', cat:'seafood', price:190, unit:'whole', inStock:true},
+    {id:'sf16', cat:'seafood', price:44, unit:'whole', inStock:true},
+    {id:'sf17', cat:'seafood', price:14, unit:'kg', inStock:true},
+    {id:'ot1', cat:'other', price:8.5, unit:'kg', inStock:true},
+    {id:'ot2', cat:'other', price:8, unit:'kg', inStock:true},
+    {id:'ot3', cat:'other', price:9, unit:'kg', inStock:true},
+    {id:'ot4', cat:'other', price:13, unit:'kg', inStock:true},
+    {id:'ot5', cat:'other', price:3.5, unit:'pcs', inStock:true},
+    {id:'ot6', cat:'other', price:17, unit:'kg', inStock:true},
+    {id:'ot7', cat:'other', price:8, unit:'pack500', inStock:true},
+    {id:'ot8', cat:'other', price:8.5, unit:'pack500', inStock:true},
+    {id:'ot9', cat:'other', price:6.5, unit:'pcs', inStock:true},
+    {id:'ot10', cat:'other', price:6, unit:'pack190', inStock:true},
+    {id:'ot11', cat:'other', price:19.5, unit:'kg', inStock:true},
+    {id:'sn1', cat:'snacks', price:85, unit:'kg', inStock:true, img:'images/1000055210.jpg'},
+    {id:'sn2', cat:'snacks', price:85, unit:'kg', inStock:true, img:'images/grok_1784642765329.jpg'},
+    {id:'sn3', cat:'snacks', price:75, unit:'kg', inStock:true, img:'images/1000055209.jpg'},
+    {id:'sn4', cat:'snacks', price:85, unit:'kg', inStock:true, img:'images/1000055206.jpg'},
+    {id:'sn5', cat:'snacks', price:65, unit:'kg', inStock:true, img:'images/1000055207.jpg'},
+    {id:'sn6', cat:'snacks', price:85, unit:'kg', inStock:true, img:'images/1000055196.jpg'},
+    {id:'sn7', cat:'snacks', price:75, unit:'kg', inStock:true, img:'images/1000055202.jpg'},
+    {id:'sn8', cat:'snacks', price:65, unit:'kg', inStock:true, img:'images/1000055186.jpg'},
+    {id:'sn9', cat:'snacks', price:85, unit:'kg', inStock:true, img:'images/1000055190.jpg'},
+    {id:'sn10', cat:'snacks', price:65, unit:'pack500', inStock:true, img:'images/1000055194.jpg'},
+    {id:'sn11', cat:'snacks', price:65, unit:'kg', inStock:true, img:'images/1000055195.jpg'},
+    {id:'sn12', cat:'snacks', price:85, unit:'kg', inStock:true, img:'images/1000055187.jpg'},
+    {id:'sn13', cat:'snacks', price:75, unit:'kg', inStock:true, img:'images/1000055208.jpg'},
+    {id:'sn14', cat:'snacks', price:65, unit:'kg', inStock:true, img:'images/1000055205.jpg'},
+  ];
+
+  let activeCat = 'all';
+  let showAll = false;
+  const VISIBLE_LIMIT = 4;
+  const cart = {}; // id -> qty
+  const favs = new Set();
+
+  // ---------------- TELEGRAM CONFIG ----------------
+  const TG_BOT_TOKEN = '8882645401:AAHZfcHZn6BVkaSfKDK7ns48u0XL4j-MsIo';
+  const TG_CHAT_ID = '8758432681';
+  let orderType = 'once'; // 'once' | 'regular'
+
+  const $ = (sel, root=document) => root.querySelector(sel);
+  const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+  function fmtPrice(n){
+    return n.toLocaleString('en-US') + ' AZN';
+  }
+  function unitLabel(u){
+    return t('units.' + u) || u;
+  }
+
+  // ---------------- LANGUAGE SWITCHER ----------------
+  const langRow = $('#langRow');
+  LANGS.forEach(code => {
+    const b = document.createElement('button');
+    b.className = 'lang-btn' + (code === lang ? ' active' : '');
+    b.textContent = code.toUpperCase();
+    b.dataset.lang = code;
+    b.addEventListener('click', () => setLang(code));
+    langRow.appendChild(b);
+  });
+  function setLang(code){
+    lang = code;
+    $$('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === code));
+    document.getElementById('htmlRoot').setAttribute('lang', code);
+    applyStaticText();
+    renderCategories();
+    renderGrid();
+    updateCartUI();
+  }
+
+  // ---------------- STATIC TEXT ----------------
+  function applyStaticText(){
+    $$('[data-i18n]').forEach(el => {
+      const val = t(el.getAttribute('data-i18n'));
+      if (typeof val === 'string') el.textContent = val;
+    });
+    $('#catalogTitle').textContent = activeCat === 'all' ? t('sections.popular') : t('categories.' + activeCat);
+    $('#cbLabel').textContent = t('cart.items');
+    $('#cbBtnLabel').textContent = t('cart.cartBtn');
+    $('#drawerTitleText').textContent = t('cart.drawerTitle');
+    $('#deliveryLabel').textContent = t('cart.delivery');
+    $('#deliveryFee').textContent = t('cart.free');
+    $('#totalLabel').textContent = t('cart.total');
+    $('#checkoutBtn').textContent = t('cart.checkout');
+    seeAllBtn.innerHTML = (showAll ? t('sections.hide') : t('sections.seeAll')) +
+      ' <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    const of = t('orderForm');
+    $('#ofTitle').textContent = of.title;
+    $('#ofLabelBusiness').textContent = of.business;
+    $('#ofBusiness').placeholder = of.businessPh;
+    $('#ofLabelContact').textContent = of.contact;
+    $('#ofContact').placeholder = of.contactPh;
+    $('#ofLabelPhone').textContent = of.phone;
+    $('#ofPhone').placeholder = of.phonePh;
+    $('#ofLabelAddress').textContent = of.address;
+    $('#ofAddress').placeholder = of.addressPh;
+    $('#ofLabelType').textContent = of.type;
+    $('#ofTypeOnce').textContent = of.once;
+    $('#ofTypeRegular').textContent = of.regular;
+    $('#ofLabelComment').textContent = of.comment;
+    $('#ofComment').placeholder = of.commentPh;
+  }
+
+  // ---------------- CATEGORIES ----------------
+  const CAT_ICONS = {
+    all: '<svg viewBox="0 0 24 24" fill="none"><path d="M4 4l7 7M20 4l-7 7M4 20l7-7M20 20l-7-7" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><circle cx="12" cy="12" r="2.4" stroke="currentColor" stroke-width="1.1"/></svg>',
+    fresh: '<svg viewBox="0 0 24 24" fill="none"><path d="M3 13c3.5-5 8.5-6.5 12.5-4.5S21 13 21 13s-4 5.5-8.5 6S5.5 17 3 13Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M9 10.5c1 1 1 3 0 4" stroke="currentColor" stroke-width="1" stroke-linecap="round"/><circle cx="8.4" cy="11.6" r=".6" fill="currentColor"/></svg>',
+    frozen: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 3v18M5.5 6.5l13 11M18.5 6.5l-13 11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M9.5 4.7L12 6l2.5-1.3M9.5 19.3L12 18l2.5 1.3M4.2 9.2L7 10l.2 2.8M19.8 9.2L17 10l-.2 2.8M4.2 14.8L7 14l.2-2.8M19.8 14.8L17 14l-.2-2.8" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    smoked: '<svg viewBox="0 0 24 24" fill="none"><path d="M9.5 3.5c1.8 2.6-1.7 3.5-.9 6.1.5 1.6 2.2 1.8 2.2 3.7A3 3 0 0 1 8 16.4" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 6c1.3 1.9-1.2 2.5-.6 4.4.4 1.1 1.6 1.3 1.6 2.7a2.2 2.2 0 0 1-2.2 2.2" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 20.5h12" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>',
+    seafood: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 4c2.4 0 3.6 2.2 3.2 4.6-.3 1.8-1.6 2.9-1.6 2.9M12 4c-2.4 0-3.6 2.2-3.2 4.6.3 1.8 1.6 2.9 1.6 2.9M12 4v6.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/><path d="M6 20c0-4 2.7-6.5 6-6.5S18 16 18 20" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>',
+    snacks: '<svg viewBox="0 0 24 24" fill="none"><path d="M8 3h8l1.2 4H6.8L8 3Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M6.2 7h11.6l-1.3 12.3a2 2 0 0 1-2 1.7H9.5a2 2 0 0 1-2-1.7L6.2 7Z" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M9.3 11v5M12 11v5M14.7 11v5" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>',
+    other: '<svg viewBox="0 0 24 24" fill="none"><path d="M12 3l3.5 3.2H20L16.5 11 20 15.8h-4.5L12 21l-3.5-5.2H4L7.5 11 4 6.2h4.5L12 3Z" stroke="currentColor" stroke-width="1.05" stroke-linejoin="round"/></svg>'
+  };
+  function mediaHtml(p, cls){
+    cls = cls || 'fillet';
+    if (p.img){
+      return `<img class="${cls} ${cls}-photo" src="${p.img}" alt="" loading="lazy">`;
+    }
+    const icon = CAT_ICONS[p.cat] || CAT_ICONS.all;
+    return `<div class="media-plate">${icon}</div>`;
+  }
+  const catRow = $('#catRow');
+  function renderCategories(){
+    catRow.innerHTML = '';
+    CAT_IDS.forEach(id => {
+      const btn = document.createElement('button');
+      btn.className = 'cat-item' + (id === activeCat ? ' active' : '');
+      btn.dataset.cat = id;
+      const icon = CAT_ICONS[id] || CAT_ICONS.all;
+      btn.innerHTML = `<div class="cat-circle"><div class="media-plate">${icon}</div></div><span>${t('categories.' + id)}</span>`;
+      btn.addEventListener('click', () => {
+        activeCat = id;
+        showAll = false;
+        $$('.cat-item').forEach(el => el.classList.toggle('active', el.dataset.cat === id));
+        $('#catalogTitle').textContent = id === 'all' ? t('sections.popular') : t('categories.' + id);
+        renderGrid();
+      });
+      catRow.appendChild(btn);
+    });
+  }
+
+  // ---------------- PRODUCT GRID ----------------
+  const grid = $('#productGrid');
+  const seeAllBtn = $('#seeAllBtn');
+
+  function filteredProducts(){
+    return activeCat === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.cat === activeCat);
+  }
+
+  function renderGrid(){
+    const list = filteredProducts();
+    const visible = showAll ? list : list.slice(0, VISIBLE_LIMIT);
+    grid.innerHTML = '';
+    visible.forEach(p => grid.appendChild(renderCard(p)));
+    seeAllBtn.style.display = list.length > VISIBLE_LIMIT ? 'flex' : 'none';
+    seeAllBtn.innerHTML = (showAll ? t('sections.hide') : t('sections.seeAll')) +
+      ' <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+
+  function renderCard(p){
+    const info = t('products.' + p.id);
+    const inStock = p.inStock !== false;
+    const card = document.createElement('div');
+    card.className = 'card' + (inStock ? '' : ' out-of-stock');
+    const qty = cart[p.id] || 0;
+    card.innerHTML = `
+      <div class="card-media">
+        <button class="fav-btn ${favs.has(p.id) ? 'active' : ''}" data-fav="${p.id}">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7-4.4-9.3-8.8C1.2 8 2.6 4.8 5.7 4.1 8 3.6 10 4.7 12 7c2-2.3 4-3.4 6.3-2.9 3.1.7 4.5 3.9 3 7.1C19 15.6 12 20 12 20Z" stroke="currentColor" stroke-width="1.5"/></svg>
+        </button>
+        ${inStock ? '' : `<div class="stock-badge">${t('outOfStock')}</div>`}
+        ${mediaHtml(p)}
+      </div>
+        <div class="card-tag">${t('categories.' + p.cat)}</div>
+        <div class="card-name">${info.name}</div>
+        <div class="card-bottom">
+          <div class="card-price">${fmtPrice(p.price)} <span>/ ${unitLabel(p.unit)}</span></div>
+          <div class="stepper-slot" data-slot="${p.id}"></div>
+        </div>
+      </div>
+    `;
+    if (inStock){
+      renderStepper(card.querySelector(`[data-slot="${p.id}"]`), p, qty);
+    } else {
+      card.querySelector(`[data-slot="${p.id}"]`).innerHTML = `<button class="out-btn" disabled>${t('outOfStock')}</button>`;
+    }
+    card.querySelector(`[data-fav="${p.id}"]`).addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (favs.has(p.id)) favs.delete(p.id); else favs.add(p.id);
+      card.querySelector(`[data-fav="${p.id}"]`).classList.toggle('active');
+    });
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('button')) return;
+      openProductModal(p);
+    });
+    return card;
+  }
+
+  function renderStepper(slot, p, qty){
+    if (qty <= 0){
+      slot.innerHTML = `<button class="add-btn" data-add="${p.id}"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>`;
+      slot.querySelector('[data-add]').addEventListener('click', () => changeQty(p, 1, slot));
+    } else {
+      slot.innerHTML = `
+        <div class="qty-stepper">
+          <button data-dec><svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+          <span class="qn">${qty}</span>
+          <button data-inc><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+        </div>`;
+      slot.querySelector('[data-inc]').addEventListener('click', () => changeQty(p, 1, slot));
+      slot.querySelector('[data-dec]').addEventListener('click', () => changeQty(p, -1, slot));
+    }
+  }
+
+  function changeQty(p, delta, slot){
+    const cur = cart[p.id] || 0;
+    const next = Math.max(0, cur + delta);
+    if (next === 0) delete cart[p.id]; else cart[p.id] = next;
+    renderStepper(slot, p, next);
+    updateCartUI();
+    if (delta > 0) showToast(t('toast').added(t('products.' + p.id).name));
+    pulseBadge();
+  }
+
+  // ---------------- PRODUCT DETAIL MODAL ----------------
+  const pmOverlay = $('#pmOverlay');
+  const productModal = $('#productModal');
+  const pmMedia = $('#pmMedia');
+  const pmTag = $('#pmTag');
+  const pmName = $('#pmName');
+  const pmPrice = $('#pmPrice');
+  const pmDesc = $('#pmDesc');
+  const pmQtyLabel = $('#pmQtyLabel');
+  const pmQtyInput = $('#pmQtyInput');
+  const pmSlider = $('#pmSlider');
+  const pmDec = $('#pmDec');
+  const pmInc = $('#pmInc');
+  const pmAddBtn = $('#pmAddBtn');
+  const pmAddLabel = $('#pmAddLabel');
+  const pmAddTotal = $('#pmAddTotal');
+  const pmCloseBtn = $('#pmCloseBtn');
+
+  let pmProduct = null;
+  const PM_MAX_QTY = 30;
+
+  function openProductModal(p){
+    pmProduct = p;
+    const info = t('products.' + p.id);
+    const inStock = p.inStock !== false;
+
+    pmMedia.innerHTML = (inStock ? '' : `<div class="pm-stock-badge">${t('outOfStock')}</div>`) + mediaHtml(p, 'pm-photo');
+    pmTag.textContent = t('categories.' + p.cat);
+    pmName.textContent = info.name;
+    pmPrice.innerHTML = `${fmtPrice(p.price)} <span>/ ${unitLabel(p.unit)}</span>`;
+    pmDesc.textContent = info.desc || '';
+    pmDesc.style.display = info.desc ? 'block' : 'none';
+    pmQtyLabel.textContent = t('pm').qty;
+    pmAddLabel.textContent = t('pm').add;
+
+    const startQty = Math.max(1, cart[p.id] || 1);
+    pmSlider.max = PM_MAX_QTY;
+    setPmQty(startQty);
+
+    pmAddBtn.disabled = !inStock;
+    pmAddBtn.style.opacity = inStock ? '1' : '.55';
+
+    productModal.classList.add('show');
+    pmOverlay.classList.add('show');
+  }
+
+  function closeProductModal(){
+    productModal.classList.remove('show');
+    pmOverlay.classList.remove('show');
+    pmProduct = null;
+  }
+
+  function setPmQty(qty){
+    qty = Math.max(1, Math.min(PM_MAX_QTY, Math.round(qty) || 1));
+    pmQtyInput.value = qty;
+    pmSlider.value = qty;
+    pmAddTotal.textContent = pmProduct ? fmtPrice(pmProduct.price * qty) : '';
+  }
+
+  pmSlider.addEventListener('input', () => setPmQty(Number(pmSlider.value)));
+  pmQtyInput.addEventListener('input', () => setPmQty(Number(pmQtyInput.value)));
+  pmDec.addEventListener('click', () => setPmQty(Number(pmQtyInput.value) - 1));
+  pmInc.addEventListener('click', () => setPmQty(Number(pmQtyInput.value) + 1));
+
+  pmCloseBtn.addEventListener('click', closeProductModal);
+  pmOverlay.addEventListener('click', closeProductModal);
+
+  pmAddBtn.addEventListener('click', () => {
+    if (!pmProduct || pmProduct.inStock === false) return;
+    const qty = Math.max(1, Math.min(PM_MAX_QTY, Number(pmQtyInput.value) || 1));
+    const cur = cart[pmProduct.id] || 0;
+    cart[pmProduct.id] = cur + qty;
+    updateCartUI();
+    renderGrid();
+    pulseBadge();
+    showToast(t('toast').added(t('products.' + pmProduct.id).name));
+    closeProductModal();
+  });
+
+  // ---------------- (слайдер hero удалён вместе с разметкой) ----------------
+
+  // ---------------- SIDE MENU ----------------
+  const overlay = $('#overlay');
+  const sideMenu = $('#sideMenu');
+  function openMenu(){ sideMenu.classList.add('show'); overlay.classList.add('show'); }
+  function closeMenu(){ sideMenu.classList.remove('show'); overlay.classList.remove('show'); }
+  $('#menuBtn').addEventListener('click', openMenu);
+  $('#closeMenuBtn').addEventListener('click', closeMenu);
+  overlay.addEventListener('click', closeMenu);
+
+  $$('.menu-link').forEach(a => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = a.dataset.target;
+    closeMenu();
+    setTimeout(() => {
+      const el = document.getElementById(targetId);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    }, 320);
+  }));
+
+  // ---------------- FEATURES ACCORDION ----------------
+  $$('.feature').forEach(f => {
+    f.addEventListener('click', () => {
+      const wasOpen = f.classList.contains('open');
+      $$('.feature').forEach(el => el.classList.remove('open'));
+      if (!wasOpen) f.classList.add('open');
+    });
+  });
+
+  // ---------------- CART / DRAWER ----------------
+  const cartBar = $('#cartBar');
+  const cartBadge = $('#cartBadge');
+  const cbCount = $('#cbCount');
+  const cbSum = $('#cbSum');
+  const drawer = $('#drawer');
+  const drawerOverlay = $('#drawerOverlay');
+  const drawerItems = $('#drawerItems');
+  const drawerTotal = $('#drawerTotal');
+
+  function cartEntries(){
+    return Object.entries(cart).map(([id, qty]) => ({p: PRODUCTS.find(pp => pp.id === id), qty}));
+  }
+  function cartTotal(){
+    return cartEntries().reduce((sum, e) => sum + e.p.price * e.qty, 0);
+  }
+  function cartCount(){
+    return Object.values(cart).reduce((a,b) => a+b, 0);
+  }
+
+  function updateCartUI(){
+    const count = cartCount();
+    const total = cartTotal();
+    cartBadge.textContent = count;
+    cbCount.textContent = count;
+    cbSum.textContent = fmtPrice(total);
+    drawerTotal.textContent = fmtPrice(total);
+    cartBar.classList.toggle('show', count > 0);
+    renderDrawerItems();
+  }
+
+  function renderDrawerItems(){
+    const entries = cartEntries();
+    if (entries.length === 0){
+      drawerItems.innerHTML = `<div class="drawer-empty">${t('cart.empty')}</div>`;
+      return;
+    }
+    drawerItems.innerHTML = '';
+    entries.forEach(({p, qty}) => {
+      const info = t('products.' + p.id);
+      const row = document.createElement('div');
+      row.className = 'd-item';
+      row.innerHTML = `
+        ${mediaHtml(p)}
+        <div class="d-item-info">
+          <div class="n">${info.name}</div>
+          <div class="p">${qty} × ${fmtPrice(p.price)} / ${unitLabel(p.unit)}</div>
+        </div>
+        <button class="remove" data-remove="${p.id}"><svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+      `;
+      row.querySelector('[data-remove]').addEventListener('click', () => {
+        delete cart[p.id];
+        updateCartUI();
+        renderGrid();
+      });
+      drawerItems.appendChild(row);
+    });
+  }
+
+  function pulseBadge(){
+    cartBadge.classList.remove('pulse');
+    void cartBadge.offsetWidth;
+    cartBadge.classList.add('pulse');
+  }
+
+  function openDrawer(){ drawer.classList.add('show'); drawerOverlay.classList.add('show'); }
+  function closeDrawer(){ drawer.classList.remove('show'); drawerOverlay.classList.remove('show'); }
+  $('#cartBtn').addEventListener('click', openDrawer);
+  $('#openDrawerBtn').addEventListener('click', openDrawer);
+  $('#closeDrawerBtn').addEventListener('click', closeDrawer);
+  drawerOverlay.addEventListener('click', closeDrawer);
+  const ofTypeOnce = $('#ofTypeOnce');
+  const ofTypeRegular = $('#ofTypeRegular');
+  ofTypeOnce.addEventListener('click', () => {
+    orderType = 'once';
+    ofTypeOnce.classList.add('active');
+    ofTypeRegular.classList.remove('active');
+  });
+  ofTypeRegular.addEventListener('click', () => {
+    orderType = 'regular';
+    ofTypeRegular.classList.add('active');
+    ofTypeOnce.classList.remove('active');
+  });
+
+  const ofError = $('#ofError');
+
+  function dlog(){}
+  const checkoutBtn = $('#checkoutBtn');
+
+  function escapeHtml(str){
+    return String(str).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  }
+
+  function buildOrderMessage(fields){
+    const lines = [];
+    lines.push('🐟 <b>Yeni sifariş / Новый заказ</b>');
+    lines.push('');
+    lines.push(`<b>Müəssisə/Заведение:</b> ${escapeHtml(fields.business)}`);
+    lines.push(`<b>Əlaqə/Контакт:</b> ${escapeHtml(fields.contact)}`);
+    lines.push(`<b>Telefon/Телефон:</b> ${escapeHtml(fields.phone)}`);
+    lines.push(`<b>Ünvan/Адрес:</b> ${escapeHtml(fields.address)}`);
+    lines.push(`<b>Növ/Тип:</b> ${orderType === 'regular' ? (t('orderForm').regular) : (t('orderForm').once)}`);
+    if (fields.comment) lines.push(`<b>Şərh/Комментарий:</b> ${escapeHtml(fields.comment)}`);
+    lines.push('');
+    lines.push('<b>Sifariş/Заказ:</b>');
+    cartEntries().forEach(({p, qty}) => {
+      const info = t('products.' + p.id);
+      lines.push(`• ${escapeHtml(info.name)} — ${qty} × ${fmtPrice(p.price)}`);
+    });
+    lines.push('');
+    lines.push(`<b>Cəmi/Итого:</b> ${fmtPrice(cartTotal())}`);
+    return lines.join('\n');
+  }
+
+  async function sendOrderToTelegram(text){
+    const params = new URLSearchParams();
+    params.set('chat_id', TG_CHAT_ID);
+    params.set('text', text);
+    params.set('parse_mode', 'HTML');
+    const url = `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage?${params.toString()}`;
+    dlog('fetch начат...');
+    const res = await fetch(url);
+    dlog('fetch завершён, статус: ' + res.status);
+    const data = await res.json();
+    dlog('ответ Telegram: ' + JSON.stringify(data).slice(0, 150));
+    if (!data.ok) throw new Error(data.description || 'Telegram error');
+    return data;
+  }
+
+  checkoutBtn.addEventListener('click', async () => {
+    dlog('клик получен, товаров в корзине: ' + cartCount());
+    if (cartCount() === 0) return;
+    ofError.classList.remove('show');
+
+    let fields;
+    try {
+      fields = {
+        business: $('#ofBusiness').value.trim(),
+        contact: $('#ofContact').value.trim(),
+        phone: $('#ofPhone').value.trim(),
+        address: $('#ofAddress').value.trim(),
+        comment: $('#ofComment').value.trim()
+      };
+    } catch (e) {
+      dlog('ошибка чтения полей формы: ' + e.message);
+      return;
+    }
+
+    if (!fields.business || !fields.contact || !fields.phone || !fields.address){
+      dlog('не все обязательные поля заполнены');
+      ofError.textContent = t('orderForm').errRequired;
+      ofError.classList.add('show');
+      return;
+    }
+
+    dlog('поля ок, отправляю запрос в Telegram...');
+
+    const originalLabel = checkoutBtn.textContent;
+    checkoutBtn.disabled = true;
+    checkoutBtn.textContent = t('orderForm').sending;
+
+    try {
+      await sendOrderToTelegram(buildOrderMessage(fields));
+      dlog('сообщение успешно отправлено!');
+      showToast(t('toast').orderPlaced);
+      Object.keys(cart).forEach(k => delete cart[k]);
+      ['ofBusiness','ofContact','ofPhone','ofAddress','ofComment'].forEach(id => $('#'+id).value = '');
+      orderType = 'once';
+      ofTypeOnce.classList.add('active');
+      ofTypeRegular.classList.remove('active');
+      updateCartUI();
+      renderGrid();
+      closeDrawer();
+    } catch (err){
+      dlog('ошибка отправки: ' + err.message);
+      console.error('Telegram send failed:', err);
+      ofError.textContent = t('orderForm').sendError;
+      ofError.classList.add('show');
+    } finally {
+      checkoutBtn.disabled = false;
+      checkoutBtn.textContent = originalLabel;
+    }
+  });
+
+  // ---------------- SEE ALL ----------------
+  seeAllBtn.addEventListener('click', () => { showAll = !showAll; renderGrid(); });
+
+  // ---------------- TOAST ----------------
+  let toastTimer;
+  function showToast(msg){
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // ---------------- INIT ----------------
+  applyStaticText();
+  renderCategories();
+  renderGrid();
+  updateCartUI();
+})();
+</script>
+</body>
+</html>
